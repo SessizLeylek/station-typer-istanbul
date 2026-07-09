@@ -1,7 +1,7 @@
-[
-    {
+{
+    "M1A": {
         "name": "M1A",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -80,7 +80,7 @@
             },
             {
                 "name": "Merter",
-                "lat": 41.0076458753,
+                "type": "metro",
                 "lon": 28.8961771147
             },
             {
@@ -120,9 +120,9 @@
             }
         ]
     },
-    {
+    "M1B": {
         "name": "M1B",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -196,7 +196,7 @@
             },
             {
                 "name": "Menderes",
-                "lat": 41.0427591002,
+                "type": "metro",
                 "lon": 28.8784878297
             },
             {
@@ -216,9 +216,9 @@
             }
         ]
     },
-    {
+    "M2": {
         "name": "M2",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -304,9 +304,9 @@
             }
         ]
     },
-    {
+    "M3": {
         "name": "M3",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -341,7 +341,7 @@
             },
             {
                 "name": "Molla Gürani",
-                "lat": 41.02551147580674,
+                "type": "metro",
                 "lon": 28.848112725049546
             },
             {
@@ -356,7 +356,7 @@
             },
             {
                 "name": "Mahmutbey",
-                "lat": 41.0548448863,
+                "type": "metro",
                 "lon": 28.8305244805
             },
             {
@@ -411,9 +411,9 @@
             }
         ]
     },
-    {
+    "M4": {
         "name": "M4",
-        "isMetro": true,
+        "type": "metro",
         "side": "AN",
         "stations": [
             {
@@ -463,7 +463,7 @@
             },
             {
                 "name": "Maltepe",
-                "lat": 40.93649417481334,
+                "type": "metro",
                 "lon": 29.13681462729192
             },
             {
@@ -533,9 +533,9 @@
             }
         ]
     },
-    {
+    "M5": {
         "name": "M5",
-        "isMetro": true,
+        "type": "metro",
         "side": "AN",
         "stations": [
             {
@@ -620,7 +620,7 @@
             },
             {
                 "name": "Meclis",
-                "lat": 41.0097339184714,
+                "type": "metro",
                 "lon": 29.198827223504292
             },
             {
@@ -660,9 +660,9 @@
             }
         ]
     },
-    {
+    "M6": {
         "name": "M6",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -687,9 +687,9 @@
             }
         ]
     },
-    {
+    "M7": {
         "name": "M7",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -704,7 +704,7 @@
             },
             {
                 "name": "Mecidiyeköy",
-                "lat": 41.0661411,
+                "type": "metro",
                 "lon": 28.9945802
             },
             {
@@ -774,14 +774,14 @@
             },
             {
                 "name": "Mahmutbey",
-                "lat": 41.054312,
+                "type": "metro",
                 "lon": 28.830612
             }
         ]
     },
-    {
+    "M8": {
         "name": "M8",
-        "isMetro": true,
+        "type": "metro",
         "side": "AN",
         "stations": [
             {
@@ -821,7 +821,7 @@
             },
             {
                 "name": "Mevlana",
-                "lat": 40.99236746200459,
+                "type": "metro",
                 "lon": 29.153558958239127
             },
             {
@@ -831,7 +831,7 @@
             },
             {
                 "name": "MODOKO-KEYAP",
-                "lat": 41.00761665286443,
+                "type": "metro",
                 "lon": 29.162182913381205
             },
             {
@@ -851,9 +851,9 @@
             }
         ]
     },
-    {
+    "M9": {
         "name": "M9",
-        "isMetro": true,
+        "type": "metro",
         "side": "EU",
         "stations": [
             {
@@ -873,7 +873,7 @@
             },
             {
                 "name": "MASKO",
-                "lat": 41.064346478553354,
+                "type": "metro",
                 "lon": 28.804145099888043
             },
             {
@@ -898,7 +898,7 @@
             },
             {
                 "name": "Mimar Sinan",
-                "lat": 41.025085,
+                "type": "metro",
                 "lon": 28.816549
             },
             {
@@ -928,9 +928,91 @@
             }
         ]
     },
-    {
+    "M11": {
+        "name": "M11",
+        "type": "metro",
+        "side": "EU",
+        "stations": [
+            {
+                "name": "Gayrettepe",
+                "lat": 41.0663376,
+                "lon": 29.0114819
+            },
+            {
+                "name": "Kağıthane",
+                "lat": 41.080086,
+                "lon": 28.9765616
+            },
+            {
+                "name": "Hasdal",
+                "lat": 41.1212167,
+                "lon": 28.9468433
+            },
+            {
+                "name": "Kemerburgaz",
+                "lat": 41.159163,
+                "lon": 28.9102378
+            },
+            {
+                "name": "Göktürk",
+                "lat": 41.1770052,
+                "lon": 28.8836557
+            },
+            {
+                "name": "İhsaniye",
+                "lat": 41.242904,
+                "lon": 28.8089418
+            },
+            {
+                "name": "İstanbul Havalimanı",
+                "lat": 41.2559331,
+                "lon": 28.7425561
+            },
+            {
+                "name": "Kargo Terminali",
+                "lat": 41.2554335,
+                "lon": 28.7126953
+            },
+            {
+                "name": "Taşoluk",
+                "lat": 41.2070653,
+                "lon": 28.715889
+            },
+            {
+                "name": "Arnavutköy Hastane",
+                "lat": 41.1790982,
+                "lon": 28.7476829
+            },
+            {
+                "name": "İbn Haldun Üniversitesi",
+                "lat": 41.1395626,
+                "lon": 28.7937991
+            },
+            {
+                "name": "Kayaşehir",
+                "lat": 41.1173314,
+                "lon": 28.7657083
+            },
+            {
+                "name": "Olimpiyatköy",
+                "lat": 41.0780118,
+                "lon": 28.7697409
+            },
+            {
+                "name": "Halkalı Stadı",
+                "lat": 41.0565654,
+                "lon": 28.7747072
+            },
+            {
+                "name": "Halkalı",
+                "lat": 41.0199044,
+                "lon": 28.7681548
+            }
+        ]
+    },
+    "T1": {
         "name": "T1",
-        "isMetro": true,
+        "type": "tram",
         "side": "EU",
         "stations": [
             {
@@ -1030,7 +1112,7 @@
             },
             {
                 "name": "Merkezefendi",
-                "lat": 41.0103922551,
+                "type": "metro",
                 "lon": 28.9095014291
             },
             {
@@ -1040,7 +1122,7 @@
             },
             {
                 "name": "Mithatpaşa",
-                "lat": 41.003492938,
+                "type": "metro",
                 "lon": 28.9014562172
             },
             {
@@ -1050,12 +1132,12 @@
             },
             {
                 "name": "Mehmet Akif",
-                "lat": 41.00580192,
+                "type": "metro",
                 "lon": 28.8816767755
             },
             {
                 "name": "Merter Tekstil Merkezi",
-                "lat": 41.0115593225,
+                "type": "metro",
                 "lon": 28.8807549715
             },
             {
@@ -1090,9 +1172,9 @@
             }
         ]
     },
-    {
+    "T2": {
         "name": "T2",
-        "isMetro": true,
+        "type": "tram",
         "side": "EU",
         "stations": [
             {
@@ -1122,9 +1204,9 @@
             }
         ]
     },
-    {
+    "T3": {
         "name": "T3",
-        "isMetro": true,
+        "type": "tram",
         "side": "AN",
         "stations": [
             {
@@ -1159,12 +1241,12 @@
             },
             {
                 "name": "Moda İlkokulu",
-                "lat": 40.986078,
+                "type": "metro",
                 "lon": 29.027885
             },
             {
                 "name": "Moda",
-                "lat": 40.987932,
+                "type": "metro",
                 "lon": 29.028593
             },
             {
@@ -1174,7 +1256,7 @@
             },
             {
                 "name": "Mühürdar",
-                "lat": 40.991075,
+                "type": "metro",
                 "lon": 29.025428
             },
             {
@@ -1184,9 +1266,9 @@
             }
         ]
     },
-    {
+    "T4": {
         "name": "T4",
-        "isMetro": true,
+        "type": "tram",
         "side": "EU",
         "stations": [
             {
@@ -1296,14 +1378,14 @@
             },
             {
                 "name": "Mescid-i Selam",
-                "lat": 41.116218,
+                "type": "metro",
                 "lon": 28.851229
             }
         ]
     },
-    {
+    "T5": {
         "name": "T5",
-        "isMetro": true,
+        "type": "tram",
         "side": "EU",
         "stations": [
             {
@@ -1378,9 +1460,9 @@
             }
         ]
     },
-    {
+    "F1": {
         "name": "F1",
-        "isMetro": true,
+        "type": "funicular",
         "side": "EU",
         "stations": [
             {
@@ -1395,9 +1477,9 @@
             }
         ]
     },
-    {
+    "F2": {
         "name": "F2",
-        "isMetro": true,
+        "type": "funicular",
         "side": "EU",
         "stations": [
             {
@@ -1412,9 +1494,9 @@
             }
         ]
     },
-    {
+    "F3": {
         "name": "F3",
-        "isMetro": true,
+        "type": "funicular",
         "side": "EU",
         "stations": [
             {
@@ -1429,9 +1511,9 @@
             }
         ]
     },
-    {
+    "F4": {
         "name": "F4",
-        "isMetro": true,
+        "type": "funicular",
         "side": "EU",
         "stations": [
             {
@@ -1446,14 +1528,14 @@
             }
         ]
     },
-    {
+    "TF1": {
         "name": "TF1",
-        "isMetro": true,
+        "type": "cablecar",
         "side": "EU",
         "stations": [
             {
                 "name": "Maçka",
-                "lat": 41.0446506053,
+                "type": "metro",
                 "lon": 28.9936254852
             },
             {
@@ -1463,9 +1545,9 @@
             }
         ]
     },
-    {
+    "TF2": {
         "name": "TF2",
-        "isMetro": true,
+        "type": "cablecar",
         "side": "EU",
         "stations": [
             {
@@ -1480,91 +1562,9 @@
             }
         ]
     },
-    {
-        "name": "M11",
-        "isMetro": true,
-        "side": "EU",
-        "stations": [
-            {
-                "name": "Gayrettepe",
-                "lat": 41.0663376,
-                "lon": 29.0114819
-            },
-            {
-                "name": "Kağıthane",
-                "lat": 41.080086,
-                "lon": 28.9765616
-            },
-            {
-                "name": "Hasdal",
-                "lat": 41.1212167,
-                "lon": 28.9468433
-            },
-            {
-                "name": "Kemerburgaz",
-                "lat": 41.159163,
-                "lon": 28.9102378
-            },
-            {
-                "name": "Göktürk",
-                "lat": 41.1770052,
-                "lon": 28.8836557
-            },
-            {
-                "name": "İhsaniye",
-                "lat": 41.242904,
-                "lon": 28.8089418
-            },
-            {
-                "name": "İstanbul Havalimanı",
-                "lat": 41.2559331,
-                "lon": 28.7425561
-            },
-            {
-                "name": "Kargo Terminali",
-                "lat": 41.2554335,
-                "lon": 28.7126953
-            },
-            {
-                "name": "Taşoluk",
-                "lat": 41.2070653,
-                "lon": 28.715889
-            },
-            {
-                "name": "Arnavutköy Hastane",
-                "lat": 41.1790982,
-                "lon": 28.7476829
-            },
-            {
-                "name": "İbn Haldun Üniversitesi",
-                "lat": 41.1395626,
-                "lon": 28.7937991
-            },
-            {
-                "name": "Kayaşehir",
-                "lat": 41.1173314,
-                "lon": 28.7657083
-            },
-            {
-                "name": "Olimpiyatköy",
-                "lat": 41.0780118,
-                "lon": 28.7697409
-            },
-            {
-                "name": "Halkalı Stadı",
-                "lat": 41.0565654,
-                "lon": 28.7747072
-            },
-            {
-                "name": "Halkalı",
-                "lat": 41.0199044,
-                "lon": 28.7681548
-            }
-        ]
-    },
-    {
+    "Marmaray": {
         "name": "Marmaray",
-        "isMetro": false,
+        "type": "commuter",
         "side": "ALL",
         "stations": [
             {
@@ -1574,7 +1574,7 @@
             },
             {
                 "name": "Mustafa Kemal",
-                "lat": 41.0061674,
+                "type": "metro",
                 "lon": 28.7738851
             },
             {
@@ -1694,7 +1694,7 @@
             },
             {
                 "name": "Maltepe",
-                "lat": 40.920811,
+                "type": "metro",
                 "lon": 29.1332851
             },
             {
@@ -1784,9 +1784,9 @@
             }
         ]
     },
-    {
+    "B2": {
         "name": "B2",
-        "isMetro": false,
+        "type": "commuter",
         "side": "EU",
         "stations": [
             {
@@ -1806,9 +1806,9 @@
             }
         ]
     },
-    {
+    "U3": {
         "name": "U3",
-        "isMetro": false,
+        "type": "commuter",
         "side": "EU",
         "stations": [
             {
@@ -1853,9 +1853,9 @@
             }
         ]
     },
-    {
+    "TCDD": {
         "name": "TCDD",
-        "isMetro": false,
+        "type": "regional",
         "side": "EU",
         "stations": [
             {
@@ -1894,5 +1894,232 @@
                 "lon": 28.0038
             }
         ]
+    },
+    "34G": {
+        "name": "34G",
+        "type": "metrobus",
+        "side": "ALL",
+        "stations": [
+            {
+                "name": "Söğütlüçeşme",
+                "lat": 40.9916473827285,
+                "lon": 29.0376365085678
+            },
+            {
+                "name": "Fikirtepe",
+                "lat": 40.9936487103669,
+                "lon": 29.0466111612905
+            },
+            {
+                "name": "Uzunçayır",
+                "lat": 40.9983609238419,
+                "lon": 29.0558739962095
+            },
+            {
+                "name": "Acıbadem",
+                "lat": 41.0141008673891,
+                "lon": 29.0579165780493
+            },
+            {
+                "name": "Altunizade",
+                "lat": 41.0210981656998,
+                "lon": 29.048973865659
+            },
+            {
+                "name": "Burhaniye",
+                "lat": 41.0320064991162,
+                "lon": 29.0469431000114
+            },
+            {
+                "name": "15 Temmuz Şehitler Köprüsü",
+                "lat": 41.0364320690911,
+                "lon": 29.0438844056863
+            },
+            {
+                "name": "Zincirlikuyu",
+                "lat": 41.0662328041257,
+                "lon": 29.0143616078752
+            },
+            {
+                "name": "Mecidiyeköy",
+                "lat": 41.0667780001523,
+                "lon": 28.9923509999986
+            },
+            {
+                "name": "Çağlayan",
+                "lat": 41.0673420001522,
+                "lon": 28.9816849999982
+            },
+            {
+                "name": "Okmeydanı Hastane",
+                "lat": 41.0673031039095,
+                "lon": 28.9749149205777
+            },
+            {
+                "name": "Darülaceze Perpa",
+                "lat": 41.061571681731,
+                "lon": 28.9670441256104
+            },
+            {
+                "name": "Okmeydanı",
+                "lat": 41.0566044482359,
+                "lon": 28.9613783424294
+            },
+            {
+                "name": "Halıcıoğlu",
+                "lat": 41.0491176151061,
+                "lon": 28.9467703657422
+            },
+            {
+                "name": "Ayvansaray Eyüpsultan",
+                "lat": 41.0392650001523,
+                "lon": 28.9382109999962
+            },
+            {
+                "name": "Edirnekapı",
+                "lat": 41.0337304791161,
+                "lon": 28.9301455000114
+            },
+            {
+                "name": "Bayrampaşa-Maltepe / Koç Üniversitesi Hastanesi",
+                "lat": 41.0238032327751,
+                "lon": 28.9213220825204
+            },
+            {
+                "name": "Topkapı-Şehit Mustafa Cambaz",
+                "lat": 41.0204265723455,
+                "lon": 28.9175311434407
+            },
+            {
+                "name": "Cevizlibağ",
+                "lat": 41.0174949176057,
+                "lon": 28.9127525445743
+            },
+            {
+                "name": "Merter",
+                "lat": 41.0076011908793,
+                "lon": 28.8973039007487
+            },
+            {
+                "name": "Zeytinburnu",
+                "lat": 41.0031374955284,
+                "lon": 28.8902690348003
+            },
+            {
+                "name": "İncirli",
+                "lat": 40.9983153191168,
+                "lon": 28.8742835900109
+            },
+            {
+                "name": "Bahçelievler",
+                "lat": 40.9951912227039,
+                "lon": 28.8639865430697
+            },
+            {
+                "name": "Şirinevler",
+                "lat": 40.9916736979951,
+                "lon": 28.8471011564907
+            },
+            {
+                "name": "Yenibosna",
+                "lat": 40.9923226784601,
+                "lon": 28.8346798388333
+            },
+            {
+                "name": "Sefaköy",
+                "lat": 40.9988505150114,
+                "lon": 28.799026577156
+            },
+            {
+                "name": "Beşyol",
+                "lat": 40.9945995616464,
+                "lon": 28.7949824384815
+            },
+            {
+                "name": "Florya",
+                "lat": 40.9862250537114,
+                "lon": 28.7871029167696
+            },
+            {
+                "name": "Cennet Mahallesi",
+                "lat": 40.985327499117,
+                "lon": 28.7827850000092
+            },
+            {
+                "name": "Küçükçekmece",
+                "lat": 40.9864959561638,
+                "lon": 28.770556489407
+            },
+            {
+                "name": "İbb Sosyal Tesisleri",
+                "lat": 40.9778794405345,
+                "lon": 28.7443857704777
+            },
+            {
+                "name": "Şükrübey",
+                "lat": 40.9803347427965,
+                "lon": 28.7315679533488
+            },
+            {
+                "name": "Avcılar Mrk.Ünv.Kmp.",
+                "lat": 40.9839436908688,
+                "lon": 28.7256306318449
+            },
+            {
+                "name": "Cihangir-Üniv.Mah.",
+                "lat": 40.990623870717,
+                "lon": 28.7138233383452
+            },
+            {
+                "name": "Mustafa Kemalpaşa",
+                "lat": 40.9954499566252,
+                "lon": 28.7055731535736
+            },
+            {
+                "name": "Saadetdere Mahallesi",
+                "lat": 40.9999994184658,
+                "lon": 28.6918289921445
+            },
+            {
+                "name": "H.Sanayi",
+                "lat": 41.0049812384373,
+                "lon": 28.6840343432778
+            },
+            {
+                "name": "Haramidere",
+                "lat": 41.0061241686209,
+                "lon": 28.6721492821011
+            },
+            {
+                "name": "Güzelyurt",
+                "lat": 41.0068871893298,
+                "lon": 28.6645586291708
+            },
+            {
+                "name": "Beylikdüzü",
+                "lat": 41.0101057775841,
+                "lon": 28.6559798335347
+            },
+            {
+                "name": "B.Belediye",
+                "lat": 41.0128579200368,
+                "lon": 28.6486546384259
+            },
+            {
+                "name": "Cumhuriyet Mahallesi",
+                "lat": 41.0156902606789,
+                "lon": 28.6412870752648
+            },
+            {
+                "name": "Beykent",
+                "lat": 41.0200423547034,
+                "lon": 28.6301955337967
+            },
+            {
+                "name": "B.Sondurak",
+                "lat": 41.021588625467,
+                "lon": 28.6263964719378
+            }
+        ]
     }
-]
+}
