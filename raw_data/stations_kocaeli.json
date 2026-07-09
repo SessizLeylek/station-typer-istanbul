@@ -1,0 +1,377 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-09T15:25:10Z",
+    "timestamp_areas_base": "2026-07-08T22:37:45Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 2562030343,
+  "lat": 40.7840847,
+  "lon": 29.6163185,
+  "tags": {
+    "ele": "5",
+    "name": "Hereke",
+    "network": "Türkiye Cumhuriyeti Devlet Demiryolları",
+    "network:short": "TCDD",
+    "network:wikidata": "Q499967",
+    "operator": "TCDD Taşımacılık",
+    "operator:wikidata": "Q28220824",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q55613663",
+    "wikipedia": "tr:Hereke Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 2692357799,
+  "lat": 40.7488982,
+  "lon": 30.0062115,
+  "tags": {
+    "ele": "14",
+    "name": "Köseköy",
+    "network": "Türkiye Cumhuriyeti Devlet Demiryolları",
+    "network:short": "TCDD",
+    "network:wikidata": "Q499967",
+    "operator": "TCDD Taşımacılık",
+    "operator:wikidata": "Q28220824",
+    "public_transport": "station",
+    "railway": "station",
+    "source": "Bing",
+    "train": "yes",
+    "wikidata": "Q55616342",
+    "wikipedia": "tr:Köseköy Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 4934435244,
+  "lat": 40.7102291,
+  "lon": 30.1103443,
+  "tags": {
+    "ele": "38",
+    "name": "Büyük Derbent",
+    "network": "Türkiye Cumhuriyeti Devlet Demiryolları",
+    "network:short": "TCDD",
+    "network:wikidata": "Q499967",
+    "operator": "TCDD Taşımacılık",
+    "operator:wikidata": "Q28220824",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q97334674",
+    "wikipedia": "tr:Büyükderbent Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 5085864847,
+  "lat": 40.8105337,
+  "lon": 29.3473731,
+  "tags": {
+    "name": "Çayırova",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q25345198",
+    "wikimedia_commons": "Category:Çayırova railway station",
+    "wikipedia": "tr:Çayırova Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 5085864850,
+  "lat": 40.8076023,
+  "lon": 29.3640227,
+  "tags": {
+    "name": "GTÜ-Fatih",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q25345197",
+    "wikimedia_commons": "Category:Gebze Teknik Üniversitesi - Fatih railway station",
+    "wikipedia": "tr:GTÜ - Fatih Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 5085891619,
+  "lat": 40.7992416,
+  "lon": 29.3801162,
+  "tags": {
+    "name": "Osmangazi",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q43401051",
+    "wikimedia_commons": "Category:Osmangazi railway station",
+    "wikipedia": "tr:Osmangazi Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 5085899451,
+  "lat": 40.7914044,
+  "lon": 29.3919092,
+  "tags": {
+    "name": "Darıca",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q43401049",
+    "wikipedia": "tr:Darıca Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 6764109168,
+  "lat": 40.7838682,
+  "lon": 29.4107806,
+  "tags": {
+    "ele": "69.2",
+    "name": "Gebze",
+    "network": "Marmaray",
+    "network:wikidata": "Q497844",
+    "operator": "TCDD Taşımacılık",
+    "operator:wikidata": "Q28220824",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes",
+    "wikidata": "Q5529591",
+    "wikimedia_commons": "Category:Gebze railway station",
+    "wikipedia": "tr:Gebze Tren İstasyonu"
+  }
+},
+{
+  "type": "node",
+  "id": 10820574849,
+  "lat": 40.7544957,
+  "lon": 29.8340705,
+  "tags": {
+    "addr:city": "Kocaeli",
+    "addr:district": "Derince",
+    "addr:neighbourhood": "Deniz Mahallesi",
+    "addr:postcode": "41900",
+    "addr:street": "Mektep Sokak",
+    "air_conditioning": "yes",
+    "ele": "7",
+    "internet_access": "yes",
+    "name": "Derince",
+    "not:network:wikidata": "Q499967",
+    "operator": "TCDD",
+    "public_transport": "station",
+    "railway": "station",
+    "start_date": "1920",
+    "train": "yes",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11065364597,
+  "lat": 40.7613937,
+  "lon": 29.9176993,
+  "tags": {
+    "ele": "3.2",
+    "internet_access": "wlan",
+    "name": "İzmit",
+    "network": "Türkiye Cumhuriyeti Devlet Demiryolları",
+    "network:short": "TCDD",
+    "network:wikidata": "Q499967",
+    "not:network:wikidata": "Q497844",
+    "operator": "TCDD Taşımacılık",
+    "operator:wikidata": "Q28220824",
+    "public_transport": "station",
+    "railway": "station",
+    "toilets": "yes",
+    "toilets:wheelchair": "yes",
+    "train": "yes",
+    "wheelchair": "yes",
+    "wikidata": "Q8080269",
+    "wikimedia_commons": "File:İzmit railway station.jpg",
+    "wikipedia": "tr:İzmit Garı"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633641,
+  "lat": 40.7573319,
+  "lon": 29.3763270,
+  "tags": {
+    "name": "Darıca Sahil",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130611296",
+    "wikipedia": "tr:Darıca Sahil (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633642,
+  "lat": 40.7612553,
+  "lon": 29.3884724,
+  "tags": {
+    "name": "Darıca Cumhuriyet Meydanı",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130613353",
+    "wikipedia": "tr:Darıca Cumhuriyet Meydanı (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633643,
+  "lat": 40.7742388,
+  "lon": 29.4035745,
+  "tags": {
+    "name": "Farabi Devlet Hastanesi",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633644,
+  "lat": 40.7830415,
+  "lon": 29.4107770,
+  "tags": {
+    "name": "Gebze Gar",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633645,
+  "lat": 40.7904089,
+  "lon": 29.4216678,
+  "tags": {
+    "name": "Fatih Devlet Hastanesi",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130613401",
+    "wikipedia": "tr:Fatih Devlet Hastanesi (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633646,
+  "lat": 40.7980109,
+  "lon": 29.4322828,
+  "tags": {
+    "name": "Gebze Kent Meydanı",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130613430",
+    "wikipedia": "tr:Gebze Kent Meydanı (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633647,
+  "lat": 40.8044504,
+  "lon": 29.4388279,
+  "tags": {
+    "name": "Gebze Stadyum",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130613437",
+    "wikipedia": "tr:Gebze Stadyum (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633648,
+  "lat": 40.8079141,
+  "lon": 29.4314045,
+  "tags": {
+    "name": "Akse Sapağı",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633649,
+  "lat": 40.8142183,
+  "lon": 29.4184419,
+  "tags": {
+    "name": "Adliye",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130613696",
+    "wikipedia": "tr:Adliye (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633650,
+  "lat": 40.8271902,
+  "lon": 29.4173880,
+  "tags": {
+    "name": "Mutlukent",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes",
+    "wikidata": "Q130613708",
+    "wikipedia": "tr:Mutlukent (Kocaeli Metrosu)"
+  }
+},
+{
+  "type": "node",
+  "id": 11591633651,
+  "lat": 40.8390543,
+  "lon": 29.4316666,
+  "tags": {
+    "name": "OSB",
+    "public_transport": "station",
+    "railway": "station",
+    "station": "subway",
+    "subway": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 13849395293,
+  "lat": 40.7724895,
+  "lon": 29.7295263,
+  "tags": {
+    "name": "Yarımca",
+    "network": "Türkiye Cumhuriyeti Devlet Demiryolları",
+    "network:short": "TCDD",
+    "network:wikidata": "Q499967",
+    "operator": "TCDD Taşımacılık",
+    "operator:wikidata": "Q28220824",
+    "public_transport": "station",
+    "railway": "station",
+    "train": "yes"
+  }
+}
+
+  ]
+}

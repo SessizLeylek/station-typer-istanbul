@@ -1,0 +1,217 @@
+[
+    {
+        "name": "Halkalı",
+        "lat": 41.0183702,
+        "lon": 28.7665286
+    },
+    {
+        "name": "Mustafa Kemal",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Küçükçekmece",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Florya",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Florya Akvaryum",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Yeşilköy",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Yeşilyurt",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Ataköy",
+        "lat": 40.9802283,
+        "lon": 28.8562288
+    },
+    {
+        "name": "Bakırköy",
+        "lat": 40.9803568,
+        "lon": 28.8724292
+    },
+    {
+        "name": "Yenimahalle",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Zeytinburnu-Fişekhane",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Kazlıçeşme",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Yenikapı",
+        "lat": 41.0051614,
+        "lon": 28.9515608
+    },
+    {
+        "name": "Sirkeci",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Üsküdar",
+        "lat": 41.0256394,
+        "lon": 29.0131466
+    },
+    {
+        "name": "Ayrılık Çeşmesi",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Söğütlüçeşme",
+        "lat": 40.9906464,
+        "lon": 29.0379088
+    },
+    {
+        "name": "Feneryolu",
+        "lat": 40.9787958,
+        "lon": 29.0488297
+    },
+    {
+        "name": "Göztepe",
+        "lat": 40.9792053,
+        "lon": 29.0626318
+    },
+    {
+        "name": "Erenköy",
+        "lat": 40.9716798,
+        "lon": 29.0763742
+    },
+    {
+        "name": "Suadiye",
+        "lat": 40.9604766,
+        "lon": 29.0844121
+    },
+    {
+        "name": "Bostancı",
+        "lat": 40.9539323,
+        "lon": 29.094902
+    },
+    {
+        "name": "Küçükyalı",
+        "lat": 40.946258,
+        "lon": 29.1071674
+    },
+    {
+        "name": "İdealtepe",
+        "lat": 40.9378351,
+        "lon": 29.1142301
+    },
+    {
+        "name": "Süreyya Plajı",
+        "lat": 40.9267803,
+        "lon": 29.1242545
+    },
+    {
+        "name": "Maltepe",
+        "lat": 40.920811,
+        "lon": 29.1332851
+    },
+    {
+        "name": "Cevizli",
+        "lat": 40.9100807,
+        "lon": 29.1559855
+    },
+    {
+        "name": "Atalar",
+        "lat": 40.8987868,
+        "lon": 29.1691914
+    },
+    {
+        "name": "Başak",
+        "lat": 40.890264,
+        "lon": 29.1774971
+    },
+    {
+        "name": "Kartal",
+        "lat": 40.8886924,
+        "lon": 29.1910793
+    },
+    {
+        "name": "Yunus",
+        "lat": 40.8845607,
+        "lon": 29.2104051
+    },
+    {
+        "name": "Pendik",
+        "lat": 40.8802417,
+        "lon": 29.231651
+    },
+    {
+        "name": "Kaynarca",
+        "lat": 40.8713681,
+        "lon": 29.2559613
+    },
+    {
+        "name": "Tersane",
+        "lat": 40.8611643,
+        "lon": 29.2732939
+    },
+    {
+        "name": "Güzelyalı",
+        "lat": 40.8568284,
+        "lon": 29.2836051
+    },
+    {
+        "name": "Aydıntepe",
+        "lat": 40.8522949,
+        "lon": 29.2931959
+    },
+    {
+        "name": "İçmeler",
+        "lat": 40.8456867,
+        "lon": 29.3000382
+    },
+    {
+        "name": "Tuzla",
+        "lat": 40.8299498,
+        "lon": 29.3224266
+    },
+    {
+        "name": "Çayırova",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "GTÜ - Fatih",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Osmangazi",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Darıca",
+        "lat": 0,
+        "lon": 0
+    },
+    {
+        "name": "Gebze",
+        "lat": 0,
+        "lon": 0
+    }
+]

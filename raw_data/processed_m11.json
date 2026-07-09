@@ -1,0 +1,77 @@
+[
+    {
+        "name": "Gayrettepe",
+        "lat": 41.0663376,
+        "lon": 29.0114819
+    },
+    {
+        "name": "Kağıthane",
+        "lat": 41.080086,
+        "lon": 28.9765616
+    },
+    {
+        "name": "Hasdal",
+        "lat": 41.1212167,
+        "lon": 28.9468433
+    },
+    {
+        "name": "Kemerburgaz",
+        "lat": 41.159163,
+        "lon": 28.9102378
+    },
+    {
+        "name": "Göktürk",
+        "lat": 41.1770052,
+        "lon": 28.8836557
+    },
+    {
+        "name": "İhsaniye",
+        "lat": 41.242904,
+        "lon": 28.8089418
+    },
+    {
+        "name": "İstanbul Havalimanı",
+        "lat": 41.2559331,
+        "lon": 28.7425561
+    },
+    {
+        "name": "Kargo Terminali",
+        "lat": 41.2554335,
+        "lon": 28.7126953
+    },
+    {
+        "name": "Taşoluk",
+        "lat": 41.2070653,
+        "lon": 28.715889
+    },
+    {
+        "name": "Arnavutköy Hastane",
+        "lat": 41.1790982,
+        "lon": 28.7476829
+    },
+    {
+        "name": "İbn Haldun Üniversitesi",
+        "lat": 41.1395626,
+        "lon": 28.7937991
+    },
+    {
+        "name": "Kayaşehir",
+        "lat": 41.1173314,
+        "lon": 28.7657083
+    },
+    {
+        "name": "Olimpiyatköy",
+        "lat": 41.0780118,
+        "lon": 28.7697409
+    },
+    {
+        "name": "Halkalı Stadı",
+        "lat": 41.0565654,
+        "lon": 28.7747072
+    },
+    {
+        "name": "Halkalı",
+        "lat": 41.0199044,
+        "lon": 28.7681548
+    }
+]

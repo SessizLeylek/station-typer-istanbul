@@ -1,0 +1,2324 @@
+[
+    {
+        "lat": 41.0228645,
+        "lon": 28.9740393,
+        "name": "Karaköy",
+        "network": null
+    },
+    {
+        "lat": 41.0283447,
+        "lon": 28.9739892,
+        "name": "Beyoğlu",
+        "network": null
+    },
+    {
+        "lat": 40.9858638,
+        "lon": 28.9054568,
+        "name": "Zeytinburnu-Fişekhane",
+        "network": null
+    },
+    {
+        "lat": 41.0096115,
+        "lon": 28.9538781,
+        "name": "Aksaray",
+        "network": null
+    },
+    {
+        "lat": 41.009612,
+        "lon": 28.9597143,
+        "name": "Laleli-Üniversite",
+        "network": null
+    },
+    {
+        "lat": 41.0267605,
+        "lon": 28.9803334,
+        "name": "Tophane",
+        "network": null
+    },
+    {
+        "lat": 40.946258,
+        "lon": 29.1071674,
+        "name": "Küçükyalı",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8987868,
+        "lon": 29.1691914,
+        "name": "Atalar",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9100807,
+        "lon": 29.1559855,
+        "name": "Cevizli",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.2117221,
+        "lon": 28.263552,
+        "name": "Kurfallı",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.2310558,
+        "lon": 28.1922846,
+        "name": "Sinekli",
+        "network": null
+    },
+    {
+        "lat": 41.0084652,
+        "lon": 28.9711451,
+        "name": "Çemberlitaş",
+        "network": null
+    },
+    {
+        "lat": 41.0110406,
+        "lon": 28.9431092,
+        "name": "Haseki",
+        "network": null
+    },
+    {
+        "lat": 40.9378351,
+        "lon": 29.1142301,
+        "name": "İdealtepe",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9267803,
+        "lon": 29.1242545,
+        "name": "Süreyya Plajı",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.920811,
+        "lon": 29.1332851,
+        "name": "Maltepe",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8802417,
+        "lon": 29.231651,
+        "name": "Pendik",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0690337,
+        "lon": 29.0111192,
+        "name": "Gayrettepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0192853,
+        "lon": 28.9194457,
+        "name": "Topkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0160557,
+        "lon": 28.9115859,
+        "name": "Cevizlibağ-A.Ö.Y.",
+        "network": null
+    },
+    {
+        "lat": 41.0182396,
+        "lon": 28.9271904,
+        "name": "Pazartekke",
+        "network": null
+    },
+    {
+        "lat": 40.8886924,
+        "lon": 29.1910793,
+        "name": "Kartal",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0115647,
+        "lon": 28.8807003,
+        "name": "Merter Tekstil Merkezi",
+        "network": null
+    },
+    {
+        "lat": 41.015239,
+        "lon": 28.8774415,
+        "name": "Güngören",
+        "network": null
+    },
+    {
+        "lat": 41.116287,
+        "lon": 28.8511849,
+        "name": "Mescid-i Selam",
+        "network": null
+    },
+    {
+        "lat": 41.0369942,
+        "lon": 28.9234199,
+        "name": "Demirkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0341778,
+        "lon": 28.9283291,
+        "name": "Şehitlik",
+        "network": null
+    },
+    {
+        "lat": 41.0313255,
+        "lon": 28.9340828,
+        "name": "Edirnekapı",
+        "network": null
+    },
+    {
+        "lat": 40.9728979,
+        "lon": 28.7876092,
+        "name": "Florya",
+        "network": null
+    },
+    {
+        "lat": 41.015279,
+        "lon": 28.9333351,
+        "name": "Çapa-Şehremini",
+        "network": null
+    },
+    {
+        "lat": 40.9817239,
+        "lon": 28.8810386,
+        "name": "Yenimahale",
+        "network": null
+    },
+    {
+        "lat": 40.9654468,
+        "lon": 28.8373253,
+        "name": "Yeşilyurt",
+        "network": null
+    },
+    {
+        "lat": 41.0174183,
+        "lon": 28.9396007,
+        "name": "Emniyet - Fatih",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9893774,
+        "lon": 29.0288497,
+        "name": "Altıyol",
+        "network": null
+    },
+    {
+        "lat": 40.9840631,
+        "lon": 29.0243788,
+        "name": "Moda Caddesi",
+        "network": null
+    },
+    {
+        "lat": 40.9859895,
+        "lon": 29.0279146,
+        "name": "Kilise",
+        "network": null
+    },
+    {
+        "lat": 40.9840978,
+        "lon": 29.0266957,
+        "name": "Moda İlkokulu",
+        "network": null
+    },
+    {
+        "lat": 40.9876651,
+        "lon": 29.0285582,
+        "name": "Bahariye",
+        "network": null
+    },
+    {
+        "lat": 40.9626534,
+        "lon": 28.8248689,
+        "name": "Yeşilköy",
+        "network": null
+    },
+    {
+        "lat": 40.9905872,
+        "lon": 29.0220448,
+        "name": "Kadıköy",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0001678,
+        "lon": 29.0302593,
+        "name": "Ayrılık Çeşmesi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9845938,
+        "lon": 29.0904257,
+        "name": "Yenisahra",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9940938,
+        "lon": 29.0706141,
+        "name": "Göztepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0023323,
+        "lon": 29.0444009,
+        "name": "Acıbadem",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.964688,
+        "lon": 29.1053769,
+        "name": "Bostancı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.8845607,
+        "lon": 29.2104051,
+        "name": "Yunus",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9716798,
+        "lon": 29.0763742,
+        "name": "Erenköy",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9358681,
+        "lon": 29.139504,
+        "name": "Maltepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9065852,
+        "lon": 29.2113435,
+        "name": "Kartal",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9489271,
+        "lon": 29.1219958,
+        "name": "Küçükyalı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0573925,
+        "lon": 28.9068063,
+        "name": "Sağmalcılar",
+        "network": null
+    },
+    {
+        "lat": 41.0813225,
+        "lon": 28.8746545,
+        "name": "KİPTAŞ Venezia",
+        "network": null
+    },
+    {
+        "lat": 41.1011898,
+        "lon": 28.9957261,
+        "name": "Seyrantepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0942135,
+        "lon": 29.0051754,
+        "name": "Sanayi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1180498,
+        "lon": 29.0241763,
+        "name": "Atatürk Oto Sanayi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0183702,
+        "lon": 28.7665286,
+        "name": "Halkalı",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8713681,
+        "lon": 29.2559613,
+        "name": "Kaynarca",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0100961,
+        "lon": 28.9466545,
+        "name": "Yusufpaşa",
+        "network": null
+    },
+    {
+        "lat": 41.0100661,
+        "lon": 28.9466363,
+        "name": "Yusufpaşa",
+        "network": null
+    },
+    {
+        "lat": 41.0281537,
+        "lon": 29.0283579,
+        "name": "Fıstıkağacı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.02864,
+        "lon": 28.9544703,
+        "name": "Fener",
+        "network": null
+    },
+    {
+        "lat": 40.9854163,
+        "lon": 29.0210928,
+        "name": "Mühürdar",
+        "network": null
+    },
+    {
+        "lat": 40.9911733,
+        "lon": 29.0254946,
+        "name": "Çarşı",
+        "network": null
+    },
+    {
+        "lat": 40.9899895,
+        "lon": 29.0220973,
+        "name": "Kadıköy - İDO- Metro",
+        "network": "T3"
+    },
+    {
+        "lat": 41.0051614,
+        "lon": 28.9515608,
+        "name": "Yenikapı",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.2600342,
+        "lon": 28.1219043,
+        "name": "Çayırdere",
+        "network": null
+    },
+    {
+        "lat": 41.2155753,
+        "lon": 28.3646796,
+        "name": "Kabakça",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.1505729,
+        "lon": 28.4801991,
+        "name": "Çatalca",
+        "network": null
+    },
+    {
+        "lat": 41.0364811,
+        "lon": 28.9847653,
+        "name": "Taksim",
+        "network": "T2 (Taksim - Tünel) Nostaljik Tramvay Hattı"
+    },
+    {
+        "lat": 41.0288238,
+        "lon": 28.9747964,
+        "name": "Tünel",
+        "network": "T2 (Taksim - Tünel) Nostaljik Tramvay Hattı"
+    },
+    {
+        "lat": 41.0795735,
+        "lon": 28.7672398,
+        "name": "Olimpiyat",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0745493,
+        "lon": 28.7864545,
+        "name": "Ziya Gökalp",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0649898,
+        "lon": 28.8260353,
+        "name": "İSTOÇ",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0551119,
+        "lon": 28.8306332,
+        "name": "Mahmutbey",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0978061,
+        "lon": 28.7913461,
+        "name": "Başak Konutları",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1081483,
+        "lon": 28.8014943,
+        "name": "Metrokent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0711324,
+        "lon": 28.803895,
+        "name": "İkitelli Sanayi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0080972,
+        "lon": 28.9755138,
+        "name": "Sultanahmet",
+        "network": null
+    },
+    {
+        "lat": 41.0081113,
+        "lon": 28.9755143,
+        "name": "Sultanahmet",
+        "network": null
+    },
+    {
+        "lat": 41.0084268,
+        "lon": 28.9711446,
+        "name": "Çemberlitaş",
+        "network": null
+    },
+    {
+        "lat": 41.0095958,
+        "lon": 28.9597129,
+        "name": "Laleli-Üniversite",
+        "network": null
+    },
+    {
+        "lat": 41.0095916,
+        "lon": 28.9538804,
+        "name": "Aksaray",
+        "network": null
+    },
+    {
+        "lat": 41.0109746,
+        "lon": 28.9430556,
+        "name": "Haseki",
+        "network": null
+    },
+    {
+        "lat": 41.0152177,
+        "lon": 28.933304,
+        "name": "Çapa - Şehremini",
+        "network": null
+    },
+    {
+        "lat": 41.0159401,
+        "lon": 28.9116644,
+        "name": "Cevizlibağ-A.Ö.Y.",
+        "network": null
+    },
+    {
+        "lat": 41.0174499,
+        "lon": 28.9732148,
+        "name": "Eminönü",
+        "network": null
+    },
+    {
+        "lat": 41.0174881,
+        "lon": 28.9732071,
+        "name": "Eminönü",
+        "network": null
+    },
+    {
+        "lat": 41.0182121,
+        "lon": 28.9271629,
+        "name": "Pazartekke",
+        "network": null
+    },
+    {
+        "lat": 41.0192057,
+        "lon": 28.9194657,
+        "name": "Topkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0104549,
+        "lon": 28.9095068,
+        "name": "Merkez Efendi",
+        "network": null
+    },
+    {
+        "lat": 41.003385,
+        "lon": 28.8998873,
+        "name": "Mithatpaşa",
+        "network": null
+    },
+    {
+        "lat": 41.0035653,
+        "lon": 28.9024959,
+        "name": "Mithatpaşa",
+        "network": null
+    },
+    {
+        "lat": 41.0042031,
+        "lon": 28.9073645,
+        "name": "Seyitnizam-Akşemsettin",
+        "network": null
+    },
+    {
+        "lat": 41.0042355,
+        "lon": 28.9073596,
+        "name": "Seyitnizam-Akşemsettin",
+        "network": null
+    },
+    {
+        "lat": 41.0235118,
+        "lon": 28.8640201,
+        "name": "Yavuz Selim",
+        "network": null
+    },
+    {
+        "lat": 41.0331166,
+        "lon": 28.8607387,
+        "name": "Bağcılar",
+        "network": null
+    },
+    {
+        "lat": 41.0268005,
+        "lon": 28.9802781,
+        "name": "Tophane",
+        "network": null
+    },
+    {
+        "lat": 41.028958,
+        "lon": 28.8610215,
+        "name": "Güneştepe",
+        "network": null
+    },
+    {
+        "lat": 41.0235482,
+        "lon": 28.8640724,
+        "name": "Yavuz Selim",
+        "network": null
+    },
+    {
+        "lat": 41.0205475,
+        "lon": 28.8675592,
+        "name": "Soğanlı",
+        "network": null
+    },
+    {
+        "lat": 41.0205923,
+        "lon": 28.8676168,
+        "name": "Soğanlı",
+        "network": null
+    },
+    {
+        "lat": 41.0170846,
+        "lon": 28.8714252,
+        "name": "Akıncılar",
+        "network": null
+    },
+    {
+        "lat": 41.0103501,
+        "lon": 28.9094588,
+        "name": "Merkez Efendi",
+        "network": null
+    },
+    {
+        "lat": 41.0121552,
+        "lon": 28.9784459,
+        "name": "Gülhane",
+        "network": null
+    },
+    {
+        "lat": 41.0121632,
+        "lon": 28.9784087,
+        "name": "Gülhane",
+        "network": null
+    },
+    {
+        "lat": 41.0151441,
+        "lon": 28.9759063,
+        "name": "Sirkeci",
+        "network": null
+    },
+    {
+        "lat": 41.0151642,
+        "lon": 28.9758304,
+        "name": "Sirkeci",
+        "network": null
+    },
+    {
+        "lat": 41.022212,
+        "lon": 28.9747928,
+        "name": "Karaköy",
+        "network": null
+    },
+    {
+        "lat": 41.0222299,
+        "lon": 28.9747557,
+        "name": "Karaköy",
+        "network": null
+    },
+    {
+        "lat": 41.0315003,
+        "lon": 28.989533,
+        "name": "Fındıklı - MSÜ",
+        "network": null
+    },
+    {
+        "lat": 41.0315308,
+        "lon": 28.9894567,
+        "name": "Fındıklı - MSÜ",
+        "network": null
+    },
+    {
+        "lat": 41.0336499,
+        "lon": 28.9775964,
+        "name": "Galatasaray Lisesi",
+        "network": "T2 (Taksim - Tünel) Nostaljik Tramvay Hattı"
+    },
+    {
+        "lat": 41.0336553,
+        "lon": 28.9775921,
+        "name": "Galatasaray Lisesi",
+        "network": "T2 (Taksim - Tünel) Nostaljik Tramvay Hattı"
+    },
+    {
+        "lat": 40.9926732,
+        "lon": 28.9168903,
+        "name": "Kazlıçeşme",
+        "network": null
+    },
+    {
+        "lat": 41.0758404,
+        "lon": 29.0144803,
+        "name": "Levent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0122525,
+        "lon": 28.9597006,
+        "name": "Vezneciler-İstanbul Üniversitesi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0773859,
+        "lon": 29.0240046,
+        "name": "Nispetiye",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0824567,
+        "lon": 29.0375989,
+        "name": "Etiler",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9980939,
+        "lon": 29.0600259,
+        "name": "Ünalan",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0663376,
+        "lon": 29.0114819,
+        "name": "Gayrettepe",
+        "network": "M11"
+    },
+    {
+        "lat": 41.0058363,
+        "lon": 28.8816928,
+        "name": "Mehmet Akif",
+        "network": null
+    },
+    {
+        "lat": 41.0404044,
+        "lon": 28.8359881,
+        "name": "Yeni Mahalle",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0812047,
+        "lon": 28.7975395,
+        "name": "Turgut Özal",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0882324,
+        "lon": 28.7965629,
+        "name": "Siteler",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.8886547,
+        "lon": 29.238581,
+        "name": "Pendik",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.882159,
+        "lon": 29.2488342,
+        "name": "Tavşantepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.8966262,
+        "lon": 29.2271263,
+        "name": "Yakacık—Adnan Kahveci",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0117715,
+        "lon": 28.9404121,
+        "name": "Fındıkzade",
+        "network": null
+    },
+    {
+        "lat": 41.0090079,
+        "lon": 28.9666193,
+        "name": "Beyazıt - Kapalı Çarşı",
+        "network": null
+    },
+    {
+        "lat": 41.0090852,
+        "lon": 28.9666458,
+        "name": null,
+        "network": null
+    },
+    {
+        "lat": 41.0090594,
+        "lon": 28.9666385,
+        "name": "Beyazıt - Kapalı Çarşı",
+        "network": null
+    },
+    {
+        "lat": 41.111554,
+        "lon": 28.858,
+        "name": "Cebeci",
+        "network": null
+    },
+    {
+        "lat": 41.1162428,
+        "lon": 28.8511412,
+        "name": "Mescid-i Selam",
+        "network": null
+    },
+    {
+        "lat": 41.1124107,
+        "lon": 28.8575196,
+        "name": "Cebeci",
+        "network": null
+    },
+    {
+        "lat": 41.1057675,
+        "lon": 28.8608215,
+        "name": "Sultançiftliği",
+        "network": null
+    },
+    {
+        "lat": 41.1068186,
+        "lon": 28.8602567,
+        "name": "Sultançiftliği",
+        "network": null
+    },
+    {
+        "lat": 41.0993241,
+        "lon": 28.8630169,
+        "name": "Yeni Mahalle",
+        "network": null
+    },
+    {
+        "lat": 41.1002839,
+        "lon": 28.8628946,
+        "name": "Yeni Mahalle",
+        "network": null
+    },
+    {
+        "lat": 41.0923097,
+        "lon": 28.8641293,
+        "name": "Hacı Şükrü",
+        "network": null
+    },
+    {
+        "lat": 41.0933385,
+        "lon": 28.8638623,
+        "name": "Hacı Şükrü",
+        "network": null
+    },
+    {
+        "lat": 41.0878266,
+        "lon": 28.8669521,
+        "name": "50. Yıl-Baştabya",
+        "network": null
+    },
+    {
+        "lat": 41.087787,
+        "lon": 28.8669014,
+        "name": "50. Yıl-Baştabya",
+        "network": null
+    },
+    {
+        "lat": 41.0837323,
+        "lon": 28.8724297,
+        "name": "Cumhuriyet Mahallesi",
+        "network": "T4"
+    },
+    {
+        "lat": 41.0845661,
+        "lon": 28.8715664,
+        "name": "Cumhuriyet Mahallesi",
+        "network": null
+    },
+    {
+        "lat": 41.0812918,
+        "lon": 28.8745733,
+        "name": "KİPTAŞ Venezia",
+        "network": null
+    },
+    {
+        "lat": 41.0618015,
+        "lon": 28.9020548,
+        "name": "Bosna-Çukurçeşme",
+        "network": null
+    },
+    {
+        "lat": 41.0618161,
+        "lon": 28.9021462,
+        "name": "Bosna-Çukurçeşme",
+        "network": null
+    },
+    {
+        "lat": 41.057372,
+        "lon": 28.9067738,
+        "name": "Sağmalcılar",
+        "network": null
+    },
+    {
+        "lat": 41.0369846,
+        "lon": 28.9233484,
+        "name": "Demirkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0341412,
+        "lon": 28.9282944,
+        "name": "Şehitlik",
+        "network": null
+    },
+    {
+        "lat": 41.0313088,
+        "lon": 28.9340531,
+        "name": "Edirnekapı",
+        "network": null
+    },
+    {
+        "lat": 41.0255685,
+        "lon": 28.9292392,
+        "name": "Vatan",
+        "network": null
+    },
+    {
+        "lat": 41.0197546,
+        "lon": 28.9205647,
+        "name": "Topkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0196904,
+        "lon": 28.9205779,
+        "name": "Topkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0465704,
+        "lon": 28.9155264,
+        "name": "Rami",
+        "network": null
+    },
+    {
+        "lat": 41.0465961,
+        "lon": 28.9156112,
+        "name": "Rami",
+        "network": null
+    },
+    {
+        "lat": 41.0416372,
+        "lon": 28.9195597,
+        "name": "Topçular",
+        "network": null
+    },
+    {
+        "lat": 41.0416106,
+        "lon": 28.9195261,
+        "name": "Topçular",
+        "network": null
+    },
+    {
+        "lat": 41.0541314,
+        "lon": 28.9102896,
+        "name": "Uluyol-Bereç",
+        "network": null
+    },
+    {
+        "lat": 41.0541152,
+        "lon": 28.9102178,
+        "name": "Uluyol-Bereç",
+        "network": null
+    },
+    {
+        "lat": 41.0684467,
+        "lon": 28.8956044,
+        "name": "Ali Fuat Başgil",
+        "network": null
+    },
+    {
+        "lat": 41.0684906,
+        "lon": 28.8956653,
+        "name": "Ali Fuat Başgil",
+        "network": null
+    },
+    {
+        "lat": 41.0725735,
+        "lon": 28.8877129,
+        "name": "Taşköprü",
+        "network": null
+    },
+    {
+        "lat": 41.0726115,
+        "lon": 28.887741,
+        "name": "Taşköprü",
+        "network": null
+    },
+    {
+        "lat": 41.0751817,
+        "lon": 28.8824304,
+        "name": "Karadeniz",
+        "network": null
+    },
+    {
+        "lat": 41.0752328,
+        "lon": 28.8824928,
+        "name": "Karadeniz",
+        "network": null
+    },
+    {
+        "lat": 41.0014561,
+        "lon": 28.8901929,
+        "name": "Zeytinburnu",
+        "network": null
+    },
+    {
+        "lat": 40.8611643,
+        "lon": 29.2732939,
+        "name": "Tersane",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8568284,
+        "lon": 29.2836051,
+        "name": "Güzelyalı",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8522949,
+        "lon": 29.2931959,
+        "name": "Aydıntepe",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8456867,
+        "lon": 29.3000382,
+        "name": "İçmeler",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.8299498,
+        "lon": 29.3224266,
+        "name": "Tuzla",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0768932,
+        "lon": 29.0137913,
+        "name": "Levent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9539323,
+        "lon": 29.094902,
+        "name": "Bostancı",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0242009,
+        "lon": 29.1087471,
+        "name": "Yamanevler",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0221852,
+        "lon": 29.0620794,
+        "name": "Kısıklı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.021911,
+        "lon": 29.0483118,
+        "name": "Altunizade",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0214561,
+        "lon": 29.0368747,
+        "name": "Bağlarbaşı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9604766,
+        "lon": 29.0844121,
+        "name": "Suadiye",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0256394,
+        "lon": 29.0131466,
+        "name": "Üsküdar",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0171401,
+        "lon": 28.8714699,
+        "name": "Akıncılar",
+        "network": null
+    },
+    {
+        "lat": 41.0289513,
+        "lon": 28.8609402,
+        "name": "Güneştepe",
+        "network": null
+    },
+    {
+        "lat": 41.0152632,
+        "lon": 28.877486,
+        "name": "Güngören",
+        "network": null
+    },
+    {
+        "lat": 41.0057888,
+        "lon": 28.8816356,
+        "name": "Mehmet Akif",
+        "network": null
+    },
+    {
+        "lat": 41.0115728,
+        "lon": 28.8807848,
+        "name": "Merter Tekstil Merkezi",
+        "network": null
+    },
+    {
+        "lat": 41.0118214,
+        "lon": 28.9404859,
+        "name": "Fındıkzade",
+        "network": null
+    },
+    {
+        "lat": 40.9803568,
+        "lon": 28.8724292,
+        "name": "Bakırköy",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0145289,
+        "lon": 29.1895134,
+        "name": "Çekmeköy",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0160135,
+        "lon": 29.1794304,
+        "name": "Necip Fazıl",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0153698,
+        "lon": 29.1631878,
+        "name": "Dudullu",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0160466,
+        "lon": 29.1517449,
+        "name": "İmam Hatip Lisesi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0166656,
+        "lon": 29.1400344,
+        "name": "Altınşehir",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0197808,
+        "lon": 29.1306269,
+        "name": "Ihlamurkuyu",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0215971,
+        "lon": 29.1186259,
+        "name": "Çakmak",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1075562,
+        "lon": 28.9884311,
+        "name": "Vadi İstanbul",
+        "network": null
+    },
+    {
+        "lat": 41.031636,
+        "lon": 28.9760684,
+        "name": "Odakule",
+        "network": "T2 (Taksim - Tünel) Nostaljik Tramvay Hattı"
+    },
+    {
+        "lat": 41.0348722,
+        "lon": 28.9806501,
+        "name": "Hüseyin Ağa Camii",
+        "network": "T2 (Taksim - Tünel) Nostaljik Tramvay Hattı"
+    },
+    {
+        "lat": 40.8888001,
+        "lon": 29.2624462,
+        "name": "Fevzi Çakmak - Hastane",
+        "network": "M4"
+    },
+    {
+        "lat": 40.9040157,
+        "lon": 29.2757138,
+        "name": "Yayalar-Şeyhli",
+        "network": "M4"
+    },
+    {
+        "lat": 40.9065703,
+        "lon": 29.3114591,
+        "name": "Sabiha Gökçen Havalimanı",
+        "network": "M4"
+    },
+    {
+        "lat": 40.9906464,
+        "lon": 29.0379088,
+        "name": "Söğütlüçeşme",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9802283,
+        "lon": 28.8562288,
+        "name": "Ataköy",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9678237,
+        "lon": 28.7969908,
+        "name": "Florya Akvaryum",
+        "network": null
+    },
+    {
+        "lat": 41.0061674,
+        "lon": 28.7738851,
+        "name": "Mustafa Kemal",
+        "network": null
+    },
+    {
+        "lat": 40.9885367,
+        "lon": 28.7729609,
+        "name": "Küçükçekmece",
+        "network": null
+    },
+    {
+        "lat": 40.9787958,
+        "lon": 29.0488297,
+        "name": "Feneryolu",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.890264,
+        "lon": 29.1774971,
+        "name": "Başak",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 40.9098874,
+        "lon": 29.2967277,
+        "name": "Kurtköy",
+        "network": "M4"
+    },
+    {
+        "lat": 41.0136066,
+        "lon": 28.9771437,
+        "name": "Sirkeci",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.1030755,
+        "lon": 28.9947104,
+        "name": "Seyrantepe",
+        "network": null
+    },
+    {
+        "lat": 41.054072,
+        "lon": 29.009666,
+        "name": "Yıldız",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0798589,
+        "lon": 28.9634762,
+        "name": "Nurtepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0791413,
+        "lon": 28.949577,
+        "name": "Alibeyköy",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0796544,
+        "lon": 28.9731198,
+        "name": "Kağıthane",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0623115,
+        "lon": 29.0069778,
+        "name": "Fulya",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0712858,
+        "lon": 28.8667756,
+        "name": "Giyimkent-Tekstilkent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.081247,
+        "lon": 28.8750965,
+        "name": "Karadeniz Mahallesi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0801289,
+        "lon": 28.9363025,
+        "name": "Çırçır",
+        "network": null
+    },
+    {
+        "lat": 41.0795812,
+        "lon": 28.9281287,
+        "name": "Veysel Karani-Akşemsettin",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0822903,
+        "lon": 28.9182892,
+        "name": "Yeşilpınar",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0853315,
+        "lon": 28.9085323,
+        "name": "Kâzım Karabekir",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0838895,
+        "lon": 28.8927638,
+        "name": "Yenimahalle",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0707068,
+        "lon": 28.9805133,
+        "name": "Çağlayan",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0311986,
+        "lon": 29.1527281,
+        "name": "Parseller",
+        "network": null
+    },
+    {
+        "lat": 41.022602,
+        "lon": 29.1595862,
+        "name": "Huzur",
+        "network": null
+    },
+    {
+        "lat": 40.9906463,
+        "lon": 29.0231033,
+        "name": "İskele Cami",
+        "network": null
+    },
+    {
+        "lat": 40.9792053,
+        "lon": 29.0626318,
+        "name": "Göztepe",
+        "network": "Marmaray"
+    },
+    {
+        "lat": 41.0318236,
+        "lon": 28.8422874,
+        "name": "Kirazlı",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0202193,
+        "lon": 28.900375,
+        "name": "Davutpaşa - YTÜ",
+        "network": "İstanbul M1A Metro Hattı"
+    },
+    {
+        "lat": 40.9966207,
+        "lon": 28.8753616,
+        "name": "Bakırköy-İncirli",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0286148,
+        "lon": 28.9544538,
+        "name": "Fener",
+        "network": null
+    },
+    {
+        "lat": 41.1134023,
+        "lon": 28.7905007,
+        "name": "Onurkent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1076913,
+        "lon": 28.7678634,
+        "name": "Toplu Konutlar",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1190792,
+        "lon": 28.7663353,
+        "name": "Kayaşehir Merkez",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0009679,
+        "lon": 29.2175153,
+        "name": "Sancaktepe Şehir Hastanesi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9659354,
+        "lon": 29.2725631,
+        "name": "Sultanbeyli",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9687135,
+        "lon": 29.2551526,
+        "name": "Hasanpaşa",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9689663,
+        "lon": 29.24,
+        "name": "Veysel Karani",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9836831,
+        "lon": 29.2314094,
+        "name": "Samandıra Merkez",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9920567,
+        "lon": 29.2290134,
+        "name": "Sancaktepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0096577,
+        "lon": 29.198884,
+        "name": "Meclis",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0074042,
+        "lon": 29.1620118,
+        "name": "MODOKO-KEYAP",
+        "network": null
+    },
+    {
+        "lat": 41.000233,
+        "lon": 29.155986,
+        "name": "İMES",
+        "network": null
+    },
+    {
+        "lat": 40.9921566,
+        "lon": 29.1533813,
+        "name": "Mevlana",
+        "network": null
+    },
+    {
+        "lat": 40.9846866,
+        "lon": 29.1377413,
+        "name": "Kayışdağı",
+        "network": null
+    },
+    {
+        "lat": 40.9789595,
+        "lon": 29.1262074,
+        "name": "İçerenköy",
+        "network": null
+    },
+    {
+        "lat": 40.978931,
+        "lon": 29.1118694,
+        "name": "Küçükbakkalköy",
+        "network": null
+    },
+    {
+        "lat": 40.9668107,
+        "lon": 29.0867801,
+        "name": "Ayşekadın",
+        "network": null
+    },
+    {
+        "lat": 40.9606909,
+        "lon": 29.093549,
+        "name": "Emin Ali Paşa",
+        "network": "M8"
+    },
+    {
+        "lat": 41.159163,
+        "lon": 28.9102378,
+        "name": "Kemerburgaz",
+        "network": "M11"
+    },
+    {
+        "lat": 41.2559331,
+        "lon": 28.7425561,
+        "name": "İstanbul Havalimanı",
+        "network": "M11"
+    },
+    {
+        "lat": 40.97539,
+        "lon": 29.0996756,
+        "name": "Kozyatağı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.024613,
+        "lon": 29.0847972,
+        "name": "Ümraniye",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0259405,
+        "lon": 29.097392,
+        "name": "Çarşı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0056529,
+        "lon": 28.9514872,
+        "name": "Yenikapı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.03199,
+        "lon": 28.8429812,
+        "name": "Kirazlı",
+        "network": "M3"
+    },
+    {
+        "lat": 41.0253395,
+        "lon": 29.0127634,
+        "name": "Üsküdar",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0015333,
+        "lon": 28.8901578,
+        "name": "Zeytinburnu",
+        "network": null
+    },
+    {
+        "lat": 41.0159992,
+        "lon": 28.9116187,
+        "name": "Cevizlibağ-A.Ö.Y.",
+        "network": null
+    },
+    {
+        "lat": 40.9163935,
+        "lon": 29.1783001,
+        "name": "Hastane Adliye",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.02269,
+        "lon": 28.9666792,
+        "name": "Haliç",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0282743,
+        "lon": 28.9727191,
+        "name": "Şişhane",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0380506,
+        "lon": 28.985549,
+        "name": "Taksim",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0527755,
+        "lon": 28.9874046,
+        "name": "Osmanbey",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0645059,
+        "lon": 28.9927696,
+        "name": "Şişli",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0346825,
+        "lon": 28.8566398,
+        "name": "Bağcılar Meydan",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0367017,
+        "lon": 28.8706993,
+        "name": "Üçyüzlü",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0427411,
+        "lon": 28.8784952,
+        "name": "Menderes",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0375744,
+        "lon": 28.8885873,
+        "name": "Esenler",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0402205,
+        "lon": 28.8946029,
+        "name": "Otogar",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0484359,
+        "lon": 28.8954925,
+        "name": "Kocatepe",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0408573,
+        "lon": 28.9072178,
+        "name": "Sağmalcılar",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0341072,
+        "lon": 28.9202627,
+        "name": "Bayrampaşa-Maltepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0239057,
+        "lon": 28.9305575,
+        "name": "Topkapı Ulubatlı",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0119976,
+        "lon": 28.9481445,
+        "name": "Aksaray",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0057787,
+        "lon": 28.9505178,
+        "name": "Yenikapı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0304621,
+        "lon": 28.8978698,
+        "name": "Terazidere",
+        "network": "M1"
+    },
+    {
+        "lat": 41.0017169,
+        "lon": 28.8899747,
+        "name": "Zeytinburnu",
+        "network": "M1"
+    },
+    {
+        "lat": 41.007618,
+        "lon": 28.8961837,
+        "name": "Merter",
+        "network": "M1"
+    },
+    {
+        "lat": 40.9954814,
+        "lon": 28.8633136,
+        "name": "Bahçelievler",
+        "network": "M1"
+    },
+    {
+        "lat": 40.9913785,
+        "lon": 28.8457709,
+        "name": "Ataköy-Şirinevler",
+        "network": "M1"
+    },
+    {
+        "lat": 40.9893998,
+        "lon": 28.8368204,
+        "name": "Yenibosna",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.986602,
+        "lon": 28.8284735,
+        "name": "DTM-İstanbul Fuar Merkezi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9797455,
+        "lon": 28.8211267,
+        "name": "Atatürk Havalimanı",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0851345,
+        "lon": 29.0456413,
+        "name": "Boğaziçi Üniversitesi/Hisarüstü",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.086111,
+        "lon": 29.0071653,
+        "name": "4. Levent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1080715,
+        "lon": 29.0209695,
+        "name": "İTÜ-Ayazağa",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1292759,
+        "lon": 29.0250803,
+        "name": "Darüşşafaka",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.1397645,
+        "lon": 29.0304548,
+        "name": "Hacıosman",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0627949,
+        "lon": 28.8554546,
+        "name": "Oruç Reis - Yüzyıl",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.056831,
+        "lon": 28.8479795,
+        "name": "Göztepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9299537,
+        "lon": 29.1468056,
+        "name": "Huzurevi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9238717,
+        "lon": 29.1547148,
+        "name": "Gülsuyu",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.920837,
+        "lon": 29.1664075,
+        "name": "Esenkent",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.9132162,
+        "lon": 29.1924269,
+        "name": "Soğanlık",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 40.98885,
+        "lon": 29.0205674,
+        "name": "Damga Sokak",
+        "network": null
+    },
+    {
+        "lat": 41.1032301,
+        "lon": 28.7772334,
+        "name": "Şehir Hastanesi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0259439,
+        "lon": 28.8479604,
+        "name": "Molla Gürani",
+        "network": null
+    },
+    {
+        "lat": 41.0194161,
+        "lon": 28.8577509,
+        "name": "Yıldıztepe",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0116361,
+        "lon": 28.8655579,
+        "name": "İlkyuva",
+        "network": null
+    },
+    {
+        "lat": 41.0046217,
+        "lon": 28.8716807,
+        "name": "Haznedar",
+        "network": null
+    },
+    {
+        "lat": 40.9976332,
+        "lon": 28.8750558,
+        "name": "İncirli",
+        "network": null
+    },
+    {
+        "lat": 40.981628,
+        "lon": 28.8740542,
+        "name": "Özgürlük Meydanı",
+        "network": null
+    },
+    {
+        "lat": 40.9736492,
+        "lon": 28.8680322,
+        "name": "Bakırköy Sahil",
+        "network": null
+    },
+    {
+        "lat": 40.9774855,
+        "lon": 29.0998855,
+        "name": "Kozyatağı",
+        "network": null
+    },
+    {
+        "lat": 41.0651758,
+        "lon": 28.9955189,
+        "name": "Mecidiyeköy",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0242528,
+        "lon": 28.9603158,
+        "name": "Cibali",
+        "network": null
+    },
+    {
+        "lat": 41.0242282,
+        "lon": 28.9602875,
+        "name": "Cibali",
+        "network": null
+    },
+    {
+        "lat": 41.0340404,
+        "lon": 28.9480691,
+        "name": "Balat",
+        "network": null
+    },
+    {
+        "lat": 41.0340207,
+        "lon": 28.9480391,
+        "name": "Balat",
+        "network": null
+    },
+    {
+        "lat": 41.0395742,
+        "lon": 28.9439654,
+        "name": "Ayvansaray",
+        "network": null
+    },
+    {
+        "lat": 41.0395444,
+        "lon": 28.9439399,
+        "name": "Ayvansaray",
+        "network": null
+    },
+    {
+        "lat": 41.0455535,
+        "lon": 28.938018,
+        "name": "Feshane",
+        "network": null
+    },
+    {
+        "lat": 41.0455401,
+        "lon": 28.9378997,
+        "name": "Feshane",
+        "network": null
+    },
+    {
+        "lat": 41.0505648,
+        "lon": 28.9352099,
+        "name": "Eyüpsultan Teleferik",
+        "network": null
+    },
+    {
+        "lat": 41.0505614,
+        "lon": 28.9351644,
+        "name": "Eyüpsultan Teleferik",
+        "network": null
+    },
+    {
+        "lat": 41.056762,
+        "lon": 28.9411459,
+        "name": "Eyüpsultan Devlet Hastanesi",
+        "network": null
+    },
+    {
+        "lat": 41.056733,
+        "lon": 28.9411417,
+        "name": "Eyüpsultan Devlet Hastanesi",
+        "network": null
+    },
+    {
+        "lat": 41.0648457,
+        "lon": 28.9429699,
+        "name": "Silahtarağa Mahallesi",
+        "network": null
+    },
+    {
+        "lat": 41.0648566,
+        "lon": 28.9429308,
+        "name": "Silahtarağa Mahallesi",
+        "network": null
+    },
+    {
+        "lat": 41.0699022,
+        "lon": 28.9428763,
+        "name": "Üniversite",
+        "network": null
+    },
+    {
+        "lat": 41.0699016,
+        "lon": 28.9428216,
+        "name": "Üniversite",
+        "network": null
+    },
+    {
+        "lat": 41.0736907,
+        "lon": 28.9459997,
+        "name": "Alibeyköy Merkez",
+        "network": null
+    },
+    {
+        "lat": 41.0737108,
+        "lon": 28.945958,
+        "name": "Alibeyköy Merkez",
+        "network": null
+    },
+    {
+        "lat": 41.0784279,
+        "lon": 28.9494362,
+        "name": "Alibeyköy Metro",
+        "network": null
+    },
+    {
+        "lat": 41.0784326,
+        "lon": 28.9494877,
+        "name": "Alibeyköy Metro",
+        "network": null
+    },
+    {
+        "lat": 41.0869022,
+        "lon": 28.9439278,
+        "name": "Alibeyköy Cep Otogarı",
+        "network": null
+    },
+    {
+        "lat": 41.0868716,
+        "lon": 28.9439324,
+        "name": "Alibeyköy Cep Otogarı",
+        "network": null
+    },
+    {
+        "lat": 40.9846743,
+        "lon": 29.0227219,
+        "name": "Rıza Paşa",
+        "network": null
+    },
+    {
+        "lat": 41.0522224,
+        "lon": 28.7987338,
+        "name": "Atatürk Mahallesi",
+        "network": null
+    },
+    {
+        "lat": 41.0584718,
+        "lon": 28.7993012,
+        "name": "Bahariye",
+        "network": null
+    },
+    {
+        "lat": 41.0641121,
+        "lon": 28.8041363,
+        "name": "MASKO",
+        "network": null
+    },
+    {
+        "lat": 41.0450113,
+        "lon": 28.8065121,
+        "name": "Halkalı Caddesi",
+        "network": "M9"
+    },
+    {
+        "lat": 41.036891,
+        "lon": 28.814003,
+        "name": "15 Temmuz",
+        "network": null
+    },
+    {
+        "lat": 41.0250887,
+        "lon": 28.8165787,
+        "name": "Mimar Sinan",
+        "network": null
+    },
+    {
+        "lat": 41.0149413,
+        "lon": 28.8179193,
+        "name": "Doğu Sanayi",
+        "network": null
+    },
+    {
+        "lat": 41.0061738,
+        "lon": 28.8186101,
+        "name": "29 Ekim Cumhuriyet",
+        "network": null
+    },
+    {
+        "lat": 40.9997399,
+        "lon": 28.8226129,
+        "name": "Çobançeşme",
+        "network": null
+    },
+    {
+        "lat": 40.9894427,
+        "lon": 28.8379196,
+        "name": "Yenibosna",
+        "network": null
+    },
+    {
+        "lat": 40.9799289,
+        "lon": 28.8562809,
+        "name": "Ataköy",
+        "network": null
+    },
+    {
+        "lat": 41.080086,
+        "lon": 28.9765616,
+        "name": "Kağıthane",
+        "network": "M11"
+    },
+    {
+        "lat": 41.1212167,
+        "lon": 28.9468433,
+        "name": "Hasdal",
+        "network": "M11"
+    },
+    {
+        "lat": 41.1770052,
+        "lon": 28.8836557,
+        "name": "Göktürk",
+        "network": "M11"
+    },
+    {
+        "lat": 41.242904,
+        "lon": 28.8089418,
+        "name": "İhsaniye",
+        "network": "M11"
+    },
+    {
+        "lat": 41.2554335,
+        "lon": 28.7126953,
+        "name": "Kargo Terminali",
+        "network": "M11"
+    },
+    {
+        "lat": 40.9517055,
+        "lon": 29.0967248,
+        "name": "Bostancı",
+        "network": null
+    },
+    {
+        "lat": 41.0322093,
+        "lon": 28.8606194,
+        "name": "Bağcılar",
+        "network": null
+    },
+    {
+        "lat": 41.0367764,
+        "lon": 28.9866305,
+        "name": "Taksim",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0998905,
+        "lon": 28.862941,
+        "name": null,
+        "network": null
+    },
+    {
+        "lat": 41.0997083,
+        "lon": 28.8629603,
+        "name": null,
+        "network": null
+    },
+    {
+        "lat": 41.03461,
+        "lon": 28.763349,
+        "name": "Konut Birlik",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0474135,
+        "lon": 28.7477316,
+        "name": "Altınşehir",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0844106,
+        "lon": 28.6788206,
+        "name": "Bahçeşehir",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0629617,
+        "lon": 28.6993868,
+        "name": "Ispartakule",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0209233,
+        "lon": 28.9632559,
+        "name": "Küçükpazar",
+        "network": null
+    },
+    {
+        "lat": 41.0162865,
+        "lon": 29.0762576,
+        "name": "Bulgurlu",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.0850943,
+        "lon": 29.0458748,
+        "name": "Boğaziçi Üniversitesi/Hisarüstü",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.08138,
+        "lon": 29.0549987,
+        "name": "Aşiyan",
+        "network": "F4"
+    },
+    {
+        "lat": 41.2070653,
+        "lon": 28.715889,
+        "name": "Taşoluk",
+        "network": "M11"
+    },
+    {
+        "lat": 41.1790982,
+        "lon": 28.7476829,
+        "name": "Arnavutköy Hastane",
+        "network": "M11"
+    },
+    {
+        "lat": 41.1395626,
+        "lon": 28.7937991,
+        "name": "İbn Haldun Üniversitesi",
+        "network": "M11"
+    },
+    {
+        "lat": 41.1173314,
+        "lon": 28.7657083,
+        "name": "Kayaşehir",
+        "network": "M11"
+    },
+    {
+        "lat": 41.0780118,
+        "lon": 28.7697409,
+        "name": "Olimpiyatköy",
+        "network": "M11"
+    },
+    {
+        "lat": 41.0565654,
+        "lon": 28.7747072,
+        "name": "Halkalı Stadı",
+        "network": "M11"
+    },
+    {
+        "lat": 41.0199044,
+        "lon": 28.7681548,
+        "name": "Halkalı",
+        "network": "M11"
+    },
+    {
+        "lat": 41.0209398,
+        "lon": 28.9632974,
+        "name": "Küçükpazar",
+        "network": null
+    },
+    {
+        "lat": 41.0182861,
+        "lon": 28.9700158,
+        "name": "Eminönü",
+        "network": null
+    },
+    {
+        "lat": 41.0182121,
+        "lon": 28.969994,
+        "name": "Eminönü",
+        "network": null
+    },
+    {
+        "lat": 41.0055376,
+        "lon": 28.9830122,
+        "name": "Cankurtaran",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.041577,
+        "lon": 28.9278897,
+        "name": "Demirkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0100295,
+        "lon": 29.2126756,
+        "name": "Sarıgazi",
+        "network": "İstanbul Metrosu"
+    },
+    {
+        "lat": 41.040705,
+        "lon": 28.9274727,
+        "name": "Demirkapı",
+        "network": null
+    },
+    {
+        "lat": 41.0455255,
+        "lon": 28.9377817,
+        "name": "Feshane",
+        "network": null
+    },
+    {
+        "lat": 41.0458947,
+        "lon": 28.9318299,
+        "name": "Eyüpsultan",
+        "network": "İstanbul Tramvayı"
+    },
+    {
+        "lat": 41.0458604,
+        "lon": 28.9318915,
+        "name": "Eyüpsultan",
+        "network": "İstanbul Tramvayı"
+    },
+    {
+        "lat": 41.0332099,
+        "lon": 28.9130851,
+        "name": "Bayrampaşa Meydan",
+        "network": "İstanbul Tramvayı"
+    },
+    {
+        "lat": 41.0334112,
+        "lon": 28.9133158,
+        "name": "Bayrampaşa Meydan",
+        "network": "İstanbul Tramvayı"
+    },
+    {
+        "lat": 41.0342147,
+        "lon": 28.9215128,
+        "name": "Bayrampaşa-Maltepe",
+        "network": "İstanbul Tramvayı"
+    },
+    {
+        "lat": 41.0341913,
+        "lon": 28.9215531,
+        "name": "Bayrampaşa-Maltepe",
+        "network": "İstanbul Tramvayı"
+    },
+    {
+        "lat": 40.9935264,
+        "lon": 28.9269188,
+        "name": "Yedikule",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 40.9999287,
+        "lon": 28.9331768,
+        "name": "Kocamustafapaşa",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0028107,
+        "lon": 28.9402407,
+        "name": "Cerrahpaşa",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.004765,
+        "lon": 28.9524013,
+        "name": "Yenikapı",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0033651,
+        "lon": 28.9629002,
+        "name": "Kumkapı",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.0150174,
+        "lon": 28.977962,
+        "name": "Sirkeci",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    },
+    {
+        "lat": 41.1172753,
+        "lon": 28.6414099,
+        "name": "Ömerli",
+        "network": null
+    },
+    {
+        "lat": 40.9968284,
+        "lon": 29.0199126,
+        "name": "Haydarpaşa",
+        "network": "Türkiye Cumhuriyeti Devlet Demiryolları"
+    }
+]
