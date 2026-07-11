@@ -19,17 +19,19 @@
             font-family: 'Nova Flat';
             font-size: 1vw;
             color: #fff;
-            background-color: #224;
-            /* Dark background behind the road layer */
+            background-color: #111;
         }
 
-        #blur {
+        #foreground {
             top: 0;
             left: 0;
             position: fixed;
             z-index: 6969;
             width: 100vw;
             height: 100vh;
+        }
+
+        .blurred {
             background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(8px);
             pointer-events: auto;
@@ -148,15 +150,177 @@
         .menu-button:active {
             transform: scale(0.98);
         }
+
+        /* GAME MENU */
+        #game-menu {
+            width: 80%;
+            height: 20%;
+            padding: 1vw;
+            margin-top: 65vh;
+            background-color: #88b8;
+            border-radius: 2vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .game-info-table {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            gap: 1vw;
+        }
+
+        .game-info {
+            background-color: #99b;
+            border-radius: 1vw;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            container-type: size;
+
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .game-info p {
+            line-height: 1;
+            font-size: calc(clamp(0px, 80cqb, 120px) * var(--scale, 1));
+            margin: 0;
+            min-width: 0;
+            min-height: 0;
+            white-space: nowrap;
+        }
+
+        .game-info p.maininfo {
+            margin: auto;
+            color: #fff;
+        }
+
+        .game-info p.subinfo {
+            --scale: 0.25;
+            color: #ddf;
+        }
+
+        .game-input-field {
+            width: auto;
+            height: auto;
+            flex: 0.8;
+            margin: 1vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .game-input-field>* {
+            margin: 0;
+            line-height: 1;
+            font-size: clamp(0px, 3cqi, 120px);
+            min-width: 0;
+            min-height: 0;
+            white-space: nowrap;
+        }
+
+        .game-input-field p {
+            margin: 0;
+            text-align: center;
+            white-space: pre;
+        }
+
+        #game-input {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            color: transparent;
+            background-color: transparent;
+            font-family: unset;
+            border: 0;
+            padding: 0;
+            text-align: left;
+        }
+
+        #game-input:focus {
+            outline: transparent;
+        }
+
+        /* METRO SCHEME */
+        .metro-scheme-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            align-items: center;
+            width: auto;
+            margin-inline: calc(max(50% - 5vw * var(--connections), 0px) + 1vw);
+            margin-top: 1vw;
+            position: relative;
+            container-type: size;
+            flex: 0.2;
+        }
+
+        .metro-track-bg,
+        .metro-track-fill,
+        .stations-row {
+            grid-area: 1 / 1;
+        }
+
+        .metro-track-bg {
+            width: 100%;
+            height: 1cqi;
+            background-color: var(--inactive-color);
+            border-radius: 5cqb;
+        }
+
+        .metro-track-fill {
+            width: var(--progress);
+            height: 1cqi;
+            background-color: var(--active-color);
+            border-radius: 10cqb;
+            transition: width 0.4s ease;
+            z-index: 1;
+        }
+
+        .stations-row {
+            width: 100%;
+            position: relative;
+            height: 3cqi;
+            z-index: 2;
+        }
+
+        .station {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .station-dot {
+            width: 2cqi;
+            height: 2cqi;
+            background-color: #ffffff;
+            border: 1cqi solid var(--inactive-color);
+            border-radius: 50%;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .station-dot.visited {
+            border-color: var(--active-color);
+        }
     </style>
 </head>
 
 <body>
 
     <div id="map"></div>
-    <div id="blur">
+    <div id="foreground" class="blurred">
         <div id="menu">
-            <div id="start-menu">
+            <div id="start-menu" style="display:none">
                 <h1 style="font-size:4em; padding:1.5vw;">Station Typer - Istanbul</h1>
 
                 <!-- Game Line Pool Options -->
@@ -183,10 +347,10 @@
 
                 <!-- SINGLE LINE DIRECTION OPTIONS (GENERATED FROM DATA) -->
                 <div id="option-direction" class="radio-options ofsl">
-                    <input type="radio" id="opt-direction-normal" name="direction-options" checked>
+                    <input type="radio" id="opt-direction-normal" value="normal" name="direction-options" checked>
                     <label for="opt-direction-normal">Yenikapı</label>
 
-                    <input type="radio" id="opt-direction-inverse" name="direction-options">
+                    <input type="radio" id="opt-direction-inverse" value="reverse" name="direction-options">
                     <label for="opt-direction-inverse">Hacıosman</label>
                 </div>
 
@@ -236,8 +400,48 @@
                 <!-- START BUTTON -->
                 <div style="flex:1; display:flex; flex-direction:column;">
                     <div style="flex:1"></div>
-                    <div id="start" class="menu-button">START!</div>
+                    <div id="start-button" class="menu-button">START!</div>
                     <div style="height:1vw;"></div>
+                </div>
+            </div>
+
+            <div id="game-menu">
+                <div class="game-info-table" style="flex:0.18;">
+                    <div class="game-info">
+                        <p class="maininfo">42</p>
+                        <p class="subinfo">WPM</p>
+                    </div>
+                    <div class="game-info">
+                        <p class="maininfo">8:20</p>
+                        <p class="subinfo">Timer</p>
+                    </div>
+                </div>
+                <div class="game-info-table" style="flex:0.64;display:flex;flex-direction:column;">
+                    <div class="metro-scheme-container" id="metro-scheme">
+
+                        <div class="metro-track-bg"></div>
+                        <div class="metro-track-fill"></div>
+
+                        <div class="stations-row" id="stations-row">
+                            <!-- WILL BE GENERATED BY CODE  -->
+                        </div>
+                    </div>
+                    <div class="game-input-field">
+                        <div>
+                            <p id="game-input-text"></p>
+                        </div>
+                        <input id="game-input" value="">
+                    </div>
+                </div>
+                <div class="game-info-table" style="flex:0.18;">
+                    <div class="game-info">
+                        <p class="maininfo">80%</p>
+                        <p class="subinfo">Accuracy</p>
+                    </div>
+                    <div class="game-info">
+                        <p class="maininfo">3/12</p>
+                        <p class="subinfo">Progress</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -246,7 +450,7 @@
     <script>
 
         const DEFAULT_LOCATION = [28.9784, 41.0082]
-        const DEFAULT_ZOOM = 12
+        const DEFAULT_ZOOM = 11
 
         const METRO_TYPES = ["metro", "tram", "funicular", "cablecar"] // METRO_TYPES.includes(line.type)
 
@@ -286,11 +490,10 @@
                 // Check if the layer contains text/icon labels or pinpoints
                 const isLabelOrSymbol = layer.type === 'symbol' || layer.id.includes('label');
 
-
                 if (isRoad && !isLabelOrSymbol) {
                     // Ensure roads are clearly visible against the background
                     try {
-                        map.setPaintProperty(layer.id, 'line-color', '#7777aa');
+                        map.setPaintProperty(layer.id, 'line-color', '#222222');    // ROADS COLOR HERE
                         map.setLayoutProperty(layer.id, 'visibility', 'visible');
                     } catch (err) {
                         console.log("Error", err);
@@ -304,12 +507,65 @@
 
         function moveToNewLocation(location, zoom) {
             map.flyTo({
-                center: location, // New target coordinates (e.g., Besiktas)
+                center: location,           // New target coordinates (e.g., Besiktas)
                 zoom: zoom,                    // New zoom level
                 essential: true,             // Ensures animation runs even if user OS has reduced motion enabled
                 duration: 500               // Animation duration in milliseconds 
             });
         }
+
+        function followLine(lineId, stationNdx = 0) {
+            const station = LINES[lineId].stations[stationNdx];
+            moveToNewLocation([station.lon, station.lat], 14);
+
+            if (LINES[lineId].stations.length > stationNdx + 1) {
+                setTimeout(() => followLine(lineId, stationNdx + 1), 1000);
+            } else {
+                setTimeout(() => moveToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM), 1000);
+            }
+        }
+
+        // Start Menu Logic
+
+        const foregroundPanel = document.getElementById("foreground");
+        const startMenuPanel = document.getElementById("start-menu");
+
+        function hideBlur() {
+            foregroundPanel.className = "";
+        }
+
+        function showBlur() {
+            foregroundPanel.className = "blurred";
+        }
+
+        function hideStartMenu() {
+            startMenuPanel.style.display = "none";
+        }
+
+        function showStartMenu() {
+            startMenuPanel.style.display = "flex";
+        }
+
+        // Start button action
+        document.getElementById("start-button").addEventListener("click", () => {
+            hideBlur();
+            hideStartMenu();
+
+            const selectedPoolValue = document.querySelector('input[name="pool-options"]:checked').value;
+            switch (selectedPoolValue) {
+                case "single-line":
+                    const selectedLineId = document.querySelector('input[name="lines-options"]:checked').value;
+                    const traverseReverse = document.querySelector('input[name="direction-options"]:checked').value === "reverse";
+                    followLine(selectedLineId);
+                    break;
+                case "single-side":
+                    break;
+                case "all-stations":
+                    break;
+            }
+
+            Object.entries(LINES).toReversed().forEach(([k, v]) => buildMetroLine(k));
+        });
 
         // Build single line options
         window.addEventListener("load", () => {
@@ -345,9 +601,294 @@
         optionPool.addEventListener("change", (event) => {
             document.body.style.setProperty("--chosen-pool", event.target.value);
         });
+
+        // Render game input text
+        let targetText = "Vezneciler-İstanbul Üniversitesi";
+
+        const inputField = document.getElementById("game-input");
+        const inputText = document.getElementById("game-input-text");
+        inputField.addEventListener("input", () => {
+            let result = checkInputAndRenderText();
+            alignInputWithText();
+
+            if (result) {
+                setTimeout(() => alert("CORRECT!"), 100);
+            }
+        });
+
+        function checkInputAndRenderText() {
+            let identical = true;
+            let builtText = "<span>";
+            const inputtedText = inputField.value;
+
+            let i = 0;
+            let currentColor = "white";
+            while (i < targetText.length) {
+                // Check if input text is over then render rest gray
+                if (inputtedText.length <= i) {
+                    currentColor = "gray";
+                    builtText += "</span><span style='color:#888;background-color:#eef2;'>" + targetText.at(i) +    // put background for the position of the cursor
+                        "</span><span style='color:#888'>" + targetText.substring(i + 1) + "</span>";
+
+                    identical = false;
+
+                    break;
+                }
+
+                // Check if input equals target then render white
+                if (targetText.at(i) === inputtedText.at(i)) {
+                    if (currentColor !== "white") {
+                        currentColor = "white";
+                        builtText += "</span><span>";
+                    }
+                }
+                // Otherwise render red
+                else if (currentColor !== "red") {
+                    currentColor = "red";
+                    builtText += "</span><span style='background-color:#d00'>";
+
+                    identical = false;
+                }
+
+                builtText += inputtedText.at(i);
+                i++;
+            }
+
+            // write remaining as red
+            if (i < inputtedText.length) {
+                builtText += "</span><span style='color:#f33'>" + inputtedText.substring(i) + "</span>";
+
+                identical = false;
+            }
+            inputText.innerHTML = builtText;
+
+            return identical;
+        }
+
+        function alignInputWithText() {
+            // align input with text
+            setTimeout(() => {
+                const inputTextPosition = inputText.getBoundingClientRect();
+                inputField.style.left = `${inputTextPosition.left}px`;
+            }, 100);
+        }
+
+        checkInputAndRenderText();
+        window.addEventListener("load", alignInputWithText);
+        window.addEventListener("resize", alignInputWithText);
+
+        // Game metro scheme
+        function buildMetroScheme(lineId) {
+            const stationPointTemplate = (progress) => `
+            <div class="station" style="left: ${progress}%;">
+            <span class="station-dot"></span>
+            </div>
+            `;
+
+            let stationRowInnerHtml = "";
+
+            // --active-color, --inactive-color, --connections, --progress
+            const stationsRow = document.getElementById("stations-row");
+            const metroScheme = document.getElementById("metro-scheme");
+
+            const stationCount = LINES[lineId].stations.length;
+
+            metroScheme.style.setProperty("--active-color", colorFromHex(LINE_COLORS[lineId]));
+            metroScheme.style.setProperty("--inactive-color", colorBrightFromHex(LINE_COLORS[lineId]));
+            metroScheme.style.setProperty("--progress", "0%");
+            metroScheme.style.setProperty("--connections", stationCount - 1);
+
+            for (let i = 0; i < stationCount; i++) {
+                stationRowInnerHtml += stationPointTemplate(i / (stationCount - 1) * 100);
+            }
+            stationsRow.innerHTML = stationRowInnerHtml;
+        }
+        window.addEventListener("load", () => buildMetroScheme("M2"));
+
+        // colors
+        function colorFromHex(hexInt) {
+            return '#' + hexInt.toString(16).padStart(6, '0')
+        }
+        function colorBrightFromHex(hexInt) {
+            const r = (hexInt >> 16) & 0xFF;
+            const g = (hexInt >> 8) & 0xFF;
+            const b = hexInt & 0xFF;
+            const br = ((0xFF - r) >> 1) + r;
+            const bg = ((0xFF - g) >> 1) + g;
+            const bb = ((0xFF - b) >> 1) + b;
+
+            return '#' + ((br << 16) | (bg << 8) | bb).toString(16).padStart(6, '0');
+        }
+
+        // Build metro line
+        const additionalMapData = {}
+        function buildMetroLine(lineId) {
+            if (!(lineId in LINES)) {
+                console.error("Wrong Line ID given:", lineId);
+                return;
+            }
+
+            // Generate lines and branching lines
+            const lineFeatures = [];
+            let tempLineCoordinates = [];
+            const pushCoordinatesToLineFeatures = () => {
+                lineFeatures.push(
+                    {
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "LineString",
+                            "coordinates": tempLineCoordinates
+                        },
+                        "properties": {}
+                    });
+                tempLineCoordinates = [];
+            };
+
+            for (const station of LINES[lineId].stations) {
+                if (station.branched_from) {
+                    pushCoordinatesToLineFeatures();
+
+                    const branchHead = LINES[lineId].stations.find((st) => st.name === station.branched_from);
+                    tempLineCoordinates.push([branchHead.lon, branchHead.lat]);
+                }
+
+                tempLineCoordinates.push([station.lon, station.lat]);
+            }
+            pushCoordinatesToLineFeatures();
+
+            // Generate data for the map
+            const mapLineData = {
+                "type": "FeatureCollection",
+                "features": lineFeatures
+            }
+
+            // Unvisited station points
+            const mapHollowPointData = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": LINES[lineId].stations.map((station) => [station.lon, station.lat])
+                },
+                "properties": {}
+            }
+
+            // Visited station points
+            const mapFilledPointData = {
+                "type": "Feature",
+                "geometry": {
+                    "type": "MultiPoint",
+                    "coordinates": []
+                },
+                "properties": {}
+            }
+
+            const lineColor = colorFromHex(LINE_COLORS[lineId]);
+            const brightLineColor = colorBrightFromHex(LINE_COLORS[lineId]);
+
+            // Register
+            const lineLayerIdentifier = 'lines-' + lineId;
+            const hollowPointLayerIdentifier = 'hpoints-' + lineId;
+            const filledPointLayerIdentifier = 'fpoints-' + lineId;
+            map.addSource(lineLayerIdentifier, {
+                'type': 'geojson',
+                'data': mapLineData
+            });
+
+            map.addSource(hollowPointLayerIdentifier, {
+                'type': 'geojson',
+                'data': mapHollowPointData
+            });
+
+            map.addSource(filledPointLayerIdentifier, {
+                'type': 'geojson',
+                'data': mapFilledPointData
+            });
+
+            additionalMapData[lineLayerIdentifier] = mapLineData;
+            additionalMapData[hollowPointLayerIdentifier] = mapHollowPointData;
+            additionalMapData[filledPointLayerIdentifier] = mapFilledPointData;
+
+            // Add line layer
+            map.addLayer({
+                'id': lineLayerIdentifier,
+                'type': 'line',
+                'source': lineLayerIdentifier,
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                'paint': {
+                    'line-color': lineColor,
+                    'line-width': 4
+                }
+            });
+
+            // Add point layers
+            map.addLayer({
+                'id': hollowPointLayerIdentifier,
+                'type': 'circle',
+                'source': hollowPointLayerIdentifier,
+                'paint': {
+                    // Inner circle sizing and styling
+                    'circle-radius': 6,
+                    'circle-color': brightLineColor, // inner fill
+
+                    // Border configuration (Stroke)
+                    'circle-stroke-width': 3,       // Thickness of the border in pixels
+                    'circle-stroke-color': lineColor // Color of the border
+                }
+            });
+
+            map.addLayer({
+                'id': filledPointLayerIdentifier,
+                'type': 'circle',
+                'source': filledPointLayerIdentifier,
+                'paint': {
+                    // Inner circle sizing and styling
+                    'circle-radius': 6,
+                    'circle-color': lineColor, // inner fill
+
+                    // Border configuration (Stroke)
+                    'circle-stroke-width': 3,       // Thickness of the border in pixels
+                    'circle-stroke-color': lineColor // Color of the border
+                }
+            });
+        }
+
+
     </script>
 
     <script>
+        const LINE_COLORS = {
+            "M1A": 0xE21F1D,
+            "M1B": 0xE21F1D,
+            "M2": 0x009A44,
+            "M3": 0x00A9E2,
+            "M4": 0xE61B75,
+            "M5": 0x693065,
+            "M6": 0xCBAB78,
+            "M7": 0xF29EBF,
+            "M8": 0x3F7ABC,
+            "M9": 0xFFD300,
+            "M11": 0xAD5591,
+            "T1": 0x044C7E,
+            "T2": 0x91ABA0,
+            "T3": 0x9D562A,
+            "T4": 0xF07C49,
+            "T5": 0x7B72B3,
+            "F1": 0x76777B,
+            "F2": 0x76777B,
+            "F3": 0x76777B,
+            "F4": 0x76777B,
+            "TF1": 0x76777B,
+            "TF2": 0x76777B,
+            "Marmaray": 0x65666A,
+            "B2": 0x76777B,
+            "U3": 0xE47A7C,
+            "TCDD": 0x999999,
+            "34G": 0xDED59A,
+        }
+
         const LINES = {
             "M1A": {
                 "name": "M1A",
@@ -430,7 +971,7 @@
                     },
                     {
                         "name": "Merter",
-                        "type": "metro",
+                        "lat": 41.007441210210835,
                         "lon": 28.8961771147
                     },
                     {
@@ -546,7 +1087,7 @@
                     },
                     {
                         "name": "Menderes",
-                        "type": "metro",
+                        "lat": 41.04281210221975,
                         "lon": 28.8784878297
                     },
                     {
@@ -691,7 +1232,7 @@
                     },
                     {
                         "name": "Molla Gürani",
-                        "type": "metro",
+                        "lat": 41.026078037367135,
                         "lon": 28.848112725049546
                     },
                     {
@@ -706,7 +1247,7 @@
                     },
                     {
                         "name": "Mahmutbey",
-                        "type": "metro",
+                        "lat": 41.05506892203315,
                         "lon": 28.8305244805
                     },
                     {
@@ -813,7 +1354,7 @@
                     },
                     {
                         "name": "Maltepe",
-                        "type": "metro",
+                        "lat": 40.93578892303112,
                         "lon": 29.13681462729192
                     },
                     {
@@ -970,7 +1511,7 @@
                     },
                     {
                         "name": "Meclis",
-                        "type": "metro",
+                        "lat": 41.009724244585236,
                         "lon": 29.198827223504292
                     },
                     {
@@ -1054,7 +1595,7 @@
                     },
                     {
                         "name": "Mecidiyeköy",
-                        "type": "metro",
+                        "lat": 41.06613589588995,
                         "lon": 28.9945802
                     },
                     {
@@ -1124,7 +1665,7 @@
                     },
                     {
                         "name": "Mahmutbey",
-                        "type": "metro",
+                        "lat": 41.05487355057015,
                         "lon": 28.830612
                     }
                 ]
@@ -1171,7 +1712,7 @@
                     },
                     {
                         "name": "Mevlana",
-                        "type": "metro",
+                        "lat": 40.9921995603841,
                         "lon": 29.153558958239127
                     },
                     {
@@ -1181,7 +1722,7 @@
                     },
                     {
                         "name": "MODOKO-KEYAP",
-                        "type": "metro",
+                        "lat": 41.007580382485266,
                         "lon": 29.162182913381205
                     },
                     {
@@ -1223,7 +1764,7 @@
                     },
                     {
                         "name": "MASKO",
-                        "type": "metro",
+                        "lat": 41.06419519557839,
                         "lon": 28.804145099888043
                     },
                     {
@@ -1248,7 +1789,7 @@
                     },
                     {
                         "name": "Mimar Sinan",
-                        "type": "metro",
+                        "lat": 41.02549256586936,
                         "lon": 28.816549
                     },
                     {
@@ -1462,7 +2003,7 @@
                     },
                     {
                         "name": "Merkezefendi",
-                        "type": "metro",
+                        "lat": 41.010381143408935,
                         "lon": 28.9095014291
                     },
                     {
@@ -1472,7 +2013,7 @@
                     },
                     {
                         "name": "Mithatpaşa",
-                        "type": "metro",
+                        "lat": 41.00337997559745,
                         "lon": 28.9014562172
                     },
                     {
@@ -1482,12 +2023,12 @@
                     },
                     {
                         "name": "Mehmet Akif",
-                        "type": "metro",
+                        "lat": 41.00580048535614,
                         "lon": 28.8816767755
                     },
                     {
                         "name": "Merter Tekstil Merkezi",
-                        "type": "metro",
+                        "lat": 41.01153106546568,
                         "lon": 28.8807549715
                     },
                     {
@@ -1561,58 +2102,58 @@
                 "stations": [
                     {
                         "name": "Kadıköy İDO",
-                        "lat": 40.989941,
-                        "lon": 29.022135
+                        "lat": 40.9899437,
+                        "lon": 29.0220482
                     },
                     {
                         "name": "İskele Camii",
-                        "lat": 40.987945,
-                        "lon": 29.021009
+                        "lat": 40.9906774,
+                        "lon": 29.0231636
                     },
                     {
                         "name": "Çarşı",
-                        "lat": 40.985098,
-                        "lon": 29.021598
+                        "lat": 40.9911359,
+                        "lon": 29.0254388
                     },
                     {
                         "name": "Altıyol",
-                        "lat": 40.984465405285626,
-                        "lon": 29.023221050093916
+                        "lat": 40.98942677764216,
+                        "lon": 29.028785131276184
                     },
                     {
                         "name": "Bahariye",
-                        "lat": 40.983932,
-                        "lon": 29.024892
+                        "lat": 40.98814296960686,
+                        "lon": 29.028531009918062
                     },
                     {
                         "name": "Kilise",
-                        "lat": 40.98411,
-                        "lon": 29.026652
+                        "lat": 40.985975500727974,
+                        "lon": 29.02794564438636
                     },
                     {
                         "name": "Moda İlkokulu",
-                        "type": "metro",
-                        "lon": 29.027885
+                        "lat": 40.98406547337632,
+                        "lon": 29.02673391151295
                     },
                     {
                         "name": "Moda",
-                        "type": "metro",
-                        "lon": 29.028593
+                        "lat": 40.98395209587347,
+                        "lon": 29.02487784539558
                     },
                     {
                         "name": "Rızapaşa",
-                        "lat": 40.99003,
-                        "lon": 29.029066
+                        "lat": 40.98473445404524,
+                        "lon": 29.022480825803385
                     },
                     {
                         "name": "Mühürdar",
-                        "type": "metro",
-                        "lon": 29.025428
+                        "lat": 40.98559069407129,
+                        "lon": 29.021176781983527
                     },
                     {
                         "name": "Damga Sokak",
-                        "lat": 40.989273,
-                        "lon": 29.020977
+                        "lat": 40.98872043385657,
+                        "lon": 29.02061480033165
                     }
                 ]
             },
@@ -1728,7 +2269,7 @@
                     },
                     {
                         "name": "Mescid-i Selam",
-                        "type": "metro",
+                        "lat": 41.116245561725414,
                         "lon": 28.851229
                     }
                 ]
@@ -1885,7 +2426,7 @@
                 "stations": [
                     {
                         "name": "Maçka",
-                        "type": "metro",
+                        "lat": 41.0447526383099,
                         "lon": 28.9936254852
                     },
                     {
@@ -1924,7 +2465,7 @@
                     },
                     {
                         "name": "Mustafa Kemal",
-                        "type": "metro",
+                        "lat": 41.0061549,
                         "lon": 28.7738851
                     },
                     {
@@ -2044,7 +2585,7 @@
                     },
                     {
                         "name": "Maltepe",
-                        "type": "metro",
+                        "lat": 40.92068576808137,
                         "lon": 29.1332851
                     },
                     {
@@ -2472,7 +3013,7 @@
                     }
                 ]
             }
-        }
+        }    
     </script>
 
 </body>
