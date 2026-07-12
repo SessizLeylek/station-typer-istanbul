@@ -148,6 +148,7 @@ document.getElementById("start-button").addEventListener("click", () => {
 
     Object.entries(LINES).toReversed().forEach(([k, v]) => buildMetroLine(k));
     startGame(linesQueue);
+    checkInputAndRenderText();
 });
 
 // Build single line options
@@ -513,7 +514,6 @@ function alignInputWithText() {
     }, 100);
 }
 
-//checkInputAndRenderText();
 window.addEventListener("load", alignInputWithText);
 window.addEventListener("resize", alignInputWithText);
 
