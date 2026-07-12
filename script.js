@@ -61,7 +61,7 @@ map.on('style.load', () => {
     });
 });
 
-function moveToNewLocation(location, zoom) {
+function moveMapToNewLocation(location, zoom) {
     map.flyTo({
         center: location,           // New target coordinates (e.g., Besiktas)
         zoom: zoom,                    // New zoom level
@@ -70,14 +70,24 @@ function moveToNewLocation(location, zoom) {
     });
 }
 
+function fitLineToMap(lineId) {
+    const bounds = new maplibregl.LngLatBounds();
+    LINES[lineId].stations.forEach((station) => bounds.extend([station.lon, station.lat]));
+
+    map.fitBounds(bounds, {
+        padding: 200,
+        maxZoom: 16
+    });
+}
+
 function followLine(lineId, stationNdx = 0) {
     const station = LINES[lineId].stations[stationNdx];
-    moveToNewLocation([station.lon, station.lat], 14);
+    moveMapToNewLocation([station.lon, station.lat], 14);
 
     if (LINES[lineId].stations.length > stationNdx + 1) {
         setTimeout(() => followLine(lineId, stationNdx + 1), 1000);
     } else {
-        setTimeout(() => moveToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM), 1000);
+        setTimeout(() => moveMapToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM), 1000);
     }
 }
 
@@ -322,7 +332,7 @@ function moveMapToTheCurrentStation() {
 
     const currentLocation = [getCurrentStationInfo().lon, getCurrentStationInfo().lat];
     const calculatedZoom = -Math.log2(2 * getDistance(currentLocation, otherLocation) / 40_000);
-    moveToNewLocation(currentLocation, calculatedZoom);
+    moveMapToNewLocation(currentLocation, calculatedZoom);
 }
 
 // Game info table updates
@@ -386,11 +396,13 @@ inputField.addEventListener("input", () => {
     if (result) {
         inputField.value = "";
 
+        const prevLineId = gameState.linesQueue[gameState.currentLineNdx].name;
         const gameContinues = tryContinueWithNextStation();
         if (gameContinues) {
             moveMapToTheCurrentStation();
         } else {
-            moveToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM);
+            fitLineToMap(prevLineId);
+            //moveMapToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM);
             hideGameInputField();
         }
     }
@@ -567,6 +579,9 @@ function colorBrightFromHex(hexInt) {
     return '#' + ((br << 16) | (bg << 8) | bb).toString(16).padStart(6, '0');
 }
 
+// vector math
+
+
 // Build metro line
 const additionalMapData = {}
 function buildMetroLine(lineId) {
@@ -599,6 +614,23 @@ function buildMetroLine(lineId) {
             tempLineCoordinates.push([branchHead.lon, branchHead.lat]);
         }
 
+        if (tempLineCoordinates.length > 1) {
+            const prevPoint = tempLineCoordinates[tempLineCoordinates.length - 2];
+            const currentPoint = tempLineCoordinates[tempLineCoordinates.length - 1];
+            const directionA = [currentPoint[0] - prevPoint[0], currentPoint[1] - prevPoint[1]];
+            const directionB = [station.lon - currentPoint[0], station.lat - currentPoint[1]];
+
+            const middlePoint0 = [currentPoint[0] + 0.1 * (0.9 * directionA[0] + 0.1 * directionB[0]), currentPoint[1] + 0.1 * (0.9 * directionA[1] + 0.1 * directionB[1])];
+            const middlePoint1 = [currentPoint[0] + 0.3 * (0.7 * directionA[0] + 0.3 * directionB[0]), currentPoint[1] + 0.3 * (0.7 * directionA[1] + 0.3 * directionB[1])];
+            const middlePoint2 = [currentPoint[0] + 0.5 * (0.5 * directionA[0] + 0.5 * directionB[0]), currentPoint[1] + 0.5 * (0.5 * directionA[1] + 0.5 * directionB[1])];
+            const middlePoint3 = [currentPoint[0] + 0.7 * (0.3 * directionA[0] + 0.7 * directionB[0]), currentPoint[1] + 0.7 * (0.3 * directionA[1] + 0.7 * directionB[1])];
+            const middlePoint4 = [currentPoint[0] + 0.9 * (0.1 * directionA[0] + 0.9 * directionB[0]), currentPoint[1] + 0.9 * (0.1 * directionA[1] + 0.9 * directionB[1])];
+            tempLineCoordinates.push(middlePoint0); 
+            tempLineCoordinates.push(middlePoint1); 
+            tempLineCoordinates.push(middlePoint2); 
+            tempLineCoordinates.push(middlePoint3); 
+            tempLineCoordinates.push(middlePoint4); 
+        }
         tempLineCoordinates.push([station.lon, station.lat]);
     }
     if (LINES[lineId].circular === true) {
