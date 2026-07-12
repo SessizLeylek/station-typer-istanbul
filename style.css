@@ -303,4 +303,5 @@ body,
 
 .station.visited .station-dot {
     border-color: var(--active-color);
+    background-color: var(--inactive-color);
 }
