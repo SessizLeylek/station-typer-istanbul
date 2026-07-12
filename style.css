@@ -245,13 +245,15 @@ body,
     grid-template-rows: 1fr;
     align-items: center;
     width: auto;
-    margin-inline: calc(max(50% - 5vw * var(--connections), 0px) + 2vw);
+    margin-inline: calc(max(50% - 8vw * var(--connections), 0px) + 2vw);
     margin-top: 1vw;
     position: relative;
     container-type: size;
     flex: 0.2;
+}
 
-    --thickness: calc(25cqi / (10 + var(--connections)));
+.metro-scheme-container>* {
+    --thickness: calc(30vh / (20 + max(var(--connections), 4)));
 }
 
 .metro-track-bg,
