@@ -178,7 +178,7 @@ body,
 
 .game-info p {
     line-height: 1;
-    font-size: calc(clamp(0px, 80cqb, 120px) * var(--scale, 1));
+    font-size: calc(clamp(0px, 60cqb, 120px) * var(--scale, 1));
     margin: 0;
     min-width: 0;
     min-height: 0;
@@ -191,8 +191,9 @@ body,
 }
 
 .game-info p.subinfo {
-    --scale: 0.25;
-    color: #ddf;
+    --scale: 0.3;
+    color: #fff9;
+    font-weight: bold;
 }
 
 .game-input-field {
@@ -300,6 +301,6 @@ body,
     transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.station-dot.visited {
+.station.visited .station-dot {
     border-color: var(--active-color);
 }

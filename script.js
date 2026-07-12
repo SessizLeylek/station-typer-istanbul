@@ -52,7 +52,7 @@ map.on('style.load', () => {
                 map.setPaintProperty(layer.id, 'line-color', '#222222');    // ROADS COLOR HERE
                 map.setLayoutProperty(layer.id, 'visibility', 'visible');
             } catch (err) {
-                console.log("Error", err);
+                console.warn("Error", err);
             }
         } else {
             // Enforce zero visibility on landmasses, water, borders, signs, pins, and names
@@ -86,6 +86,8 @@ function followLine(lineId, stationNdx = 0) {
 const foregroundPanel = document.getElementById("foreground");
 const startMenuPanel = document.getElementById("start-menu");
 const gameMenuPanel = document.getElementById("game-menu");
+const gameInputField = document.getElementById("game-input-field");
+const backButtonField = document.getElementById("back-button-field");
 
 function hideBlur() {
     foregroundPanel.className = "";
@@ -103,7 +105,7 @@ function showStartMenu() {
     startMenuPanel.style.display = "flex";
 }
 
-function hideGameMenu() {    
+function hideGameMenu() {
     gameMenuPanel.style.display = "none";
 }
 
@@ -111,11 +113,24 @@ function showGameMenu() {
     gameMenuPanel.style.display = "flex";
 }
 
+function hideGameInputField() {
+    gameInputField.style.display = "none";
+    backButtonField.style.display = "flex";
+}
+
+function showGameInputField() {
+    gameInputField.style.display = "flex";
+    backButtonField.style.display = "none";
+}
+
 // Start button action
 document.getElementById("start-button").addEventListener("click", () => {
     hideBlur();
     hideStartMenu();
     showGameMenu();
+    showGameInputField();
+
+    const linesQueue = [];
 
     const selectedPoolValue = document.querySelector('input[name="pool-options"]:checked').value;
     switch (selectedPoolValue) {
@@ -123,7 +138,7 @@ document.getElementById("start-button").addEventListener("click", () => {
             const selectedLineId = document.querySelector('input[name="lines-options"]:checked').value;
             const traverseReverse = document.querySelector('input[name="direction-options"]:checked').value === "reverse";
 
-            startGame([{name: selectedLineId, reverse: traverseReverse}]);
+            linesQueue.push({ name: selectedLineId, reverse: traverseReverse });
             break;
         case "single-side":
             break;
@@ -132,6 +147,7 @@ document.getElementById("start-button").addEventListener("click", () => {
     }
 
     Object.entries(LINES).toReversed().forEach(([k, v]) => buildMetroLine(k));
+    startGame(linesQueue);
 });
 
 // Build single line options
@@ -158,6 +174,7 @@ window.addEventListener("load", () => {
         labelDirectionInverse.textContent = stations[stations.length - 1].name;
     };
 
+    updateDirectionsForLine(Object.keys(LINES)[0]);
     optionLines.addEventListener("change", (event) => updateDirectionsForLine(event.target.value));
 });
 
@@ -168,8 +185,6 @@ document.body.style.setProperty("--chosen-pool", "single-line");
 optionPool.addEventListener("change", (event) => {
     document.body.style.setProperty("--chosen-pool", event.target.value);
 });
-
-
 
 // GAMEPLAY
 const gameState = {
@@ -191,13 +206,15 @@ const gameState = {
     startTime: 0,
 }
 
+function getCurrentLineInfo() {
+    return LINES[gameState.linesQueue[gameState.currentLineNdx].name];
+}
+
 function getCurrentStationInfo() {
-    const lineName = gameState.linesQueue[gameState.currentLineNdx].name;
-    const stationInfo = structuredClone(LINES[lineName].stations[gameState.currentStationNdx]);
-    
+    const stationInfo = structuredClone(getCurrentLineInfo().stations[gameState.currentStationNdx]);
+
     // Use alias for long station names
-    if (stationInfo.name in STATION_NAME_ALIASES)
-    {
+    if (stationInfo.name in STATION_NAME_ALIASES) {
         stationInfo.name = STATION_NAME_ALIASES[stationInfo.name];
     }
 
@@ -216,19 +233,19 @@ function startGame(linesQueue) {
     gameState.startTime = performance.now();
 
     gameState.currentLineNdx = -1;
-    continueWithNextLine();
+    tryContinueWithNextLine();
 
     tickGameTime();
+    moveMapToTheCurrentStation();
 }
 
-function continueWithNextLine() {
+function tryContinueWithNextLine() {
     gameState.currentLineNdx++;
     updateProgressInfo();
 
     if (gameState.currentLineNdx >= gameState.linesQueue.length) {
         gameState.isActive = false;
-        setTimeout(() => alert("Game Completed!"), 100);
-        return;
+        return false;
     }
 
     gameState.maxStationCount = LINES[gameState.linesQueue[gameState.currentLineNdx].name].stations.length;
@@ -241,26 +258,70 @@ function continueWithNextLine() {
     }
 
     buildMetroScheme(gameState.linesQueue[gameState.currentLineNdx].name);
+
+    return true;
 }
 
-function continueWithNextStation() {
+function tryContinueWithNextStation() {
     const wordCount = getCurrentStationInfo().name.split(/[ \/\-]+/).length;
     gameState.wordsTyped += wordCount;
     updateWpmInfo();
 
+    updateSchemeProgress();
+
     if (gameState.isLineReversed) {
         gameState.currentStationNdx--;
         if (gameState.currentStationNdx < 0) {
-            continueWithNextLine();
-            return;
+            return tryContinueWithNextLine();
         }
     } else {
         gameState.currentStationNdx++;
         if (gameState.currentStationNdx >= gameState.maxStationCount) {
-            continueWithNextLine();
-            return;
+            return tryContinueWithNextLine();
         }
     }
+
+    return true;
+}
+
+// calculate distance
+function getDistance(p0, p1) {
+    const nm0 = 84.013 * (p0[0] - p1[0]);
+    const nm1 = 111.13 * (p0[1] - p1[1]);
+    return Math.sqrt(nm0 * nm0 + nm1 * nm1);
+}
+
+// fly towards the current station
+function moveMapToTheCurrentStation() {
+    let otherLocation = [0, 0];
+    if (gameState.currentStationNdx <= 0) {
+        let otherStationNdx = 1;
+        if (getCurrentLineInfo().circular === true) {
+            otherStationNdx = gameState.maxStationCount - 1;
+        }
+
+        const otherStation = getCurrentLineInfo().stations[otherStationNdx];
+        otherLocation[0] = otherStation.lon;
+        otherLocation[1] = otherStation.lat;
+    } else if (gameState.currentStationNdx >= gameState.maxStationCount - 1) {
+        let otherStationNdx = gameState.maxStationCount - 2;
+        if (getCurrentLineInfo().circular === true) {
+            otherStationNdx = 0;
+        }
+
+        const otherStation = getCurrentLineInfo().stations[otherStationNdx];
+        otherLocation[0] = otherStation.lon;
+        otherLocation[1] = otherStation.lat;
+    } else {
+        const nextIndex = gameState.isLineReversed ? -1 : 1;
+        const otherStation = getCurrentLineInfo().stations[gameState.currentStationNdx + nextIndex];
+        otherLocation[0] = otherStation.lon;
+        otherLocation[1] = otherStation.lat;
+    }
+
+    const currentLocation = [getCurrentStationInfo().lon, getCurrentStationInfo().lat];
+    const calculatedZoom = -Math.log2(2 * getDistance(currentLocation, otherLocation) / 40_000);
+    moveToNewLocation(currentLocation, calculatedZoom);
 }
 
 // Game info table updates
@@ -293,7 +354,7 @@ function updateTimeInfo() {
 }
 
 function updateAccuracyInfo() {
-    gameAccuracyInfo.textContent = "{0}%".format((correctTypes / totalTypes) * 100);;
+    gameAccuracyInfo.textContent = "{0}%".format(((gameState.correctTypes / gameState.totalTypes) * 100).toFixed(2));;
 }
 
 function updateProgressInfo() {
@@ -301,6 +362,16 @@ function updateProgressInfo() {
     const completedLines = gameState.currentLineNdx;
     gameProgressInfo.textContent = `${completedLines}/${totalLines}`;
 }
+
+// back button functionality
+const backButton = document.getElementById("back-button");
+backButton.addEventListener("click", () => {
+    showBlur();
+    showStartMenu();
+    hideGameMenu();
+
+    deconstructMetroLines();
+});
 
 // render input text with input
 const inputField = document.getElementById("game-input");
@@ -313,8 +384,34 @@ inputField.addEventListener("input", () => {
 
     if (result) {
         inputField.value = "";
-        continueWithNextStation();
+
+        const gameContinues = tryContinueWithNextStation();
+        if (gameContinues) {
+            moveMapToTheCurrentStation();
+        } else {
+            moveToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM);
+            hideGameInputField();
+        }
     }
+});
+
+// register accuracy on input
+inputField.addEventListener("beforeinput", (event) => {
+    if (event.data == null) return;
+
+    const targetText = getCurrentStationInfo().name;
+    let cursorPosition = inputField.selectionStart;
+
+    for (c of event.data) {
+        gameState.totalTypes++;
+        if (targetText.at(cursorPosition) === c) {
+            gameState.correctTypes++;
+        }
+
+        cursorPosition++;
+    }
+
+    updateAccuracyInfo();
 });
 
 // rerender cursor movement
@@ -335,6 +432,7 @@ document.addEventListener("click", (event) => {
     inputField.setSelectionRange(length, length);
 });
 
+// render full text and compare with the target
 function checkInputAndRenderText() {
     let identical = true;
     let builtText = "<span>";
@@ -420,6 +518,8 @@ window.addEventListener("load", alignInputWithText);
 window.addEventListener("resize", alignInputWithText);
 
 // Game metro scheme
+const metroScheme = document.getElementById("metro-scheme");
+const stationsRow = document.getElementById("stations-row");
 function buildMetroScheme(lineId) {
     const stationPointTemplate = (progress) => `
             <div class="station" style="left: ${progress}%;">
@@ -430,8 +530,6 @@ function buildMetroScheme(lineId) {
     let stationRowInnerHtml = "";
 
     // --active-color, --inactive-color, --connections, --progress
-    const stationsRow = document.getElementById("stations-row");
-    const metroScheme = document.getElementById("metro-scheme");
 
     const stationCount = LINES[lineId].stations.length;
 
@@ -445,7 +543,14 @@ function buildMetroScheme(lineId) {
     }
     stationsRow.innerHTML = stationRowInnerHtml;
 }
-//window.addEventListener("load", () => buildMetroScheme("34G"));
+
+function updateSchemeProgress() {
+    const nodeNdx = gameState.isLineReversed ? gameState.maxStationCount - gameState.currentStationNdx - 1 : gameState.currentStationNdx;
+    const progression = nodeNdx / (gameState.maxStationCount - 1) * 100;
+
+    metroScheme.style.setProperty("--progress", `${progression}%`);
+    setTimeout(() => stationsRow.children[nodeNdx].classList.add("visited"), 100);
+}
 
 // colors
 function colorFromHex(hexInt) {
@@ -495,6 +600,9 @@ function buildMetroLine(lineId) {
         }
 
         tempLineCoordinates.push([station.lon, station.lat]);
+    }
+    if (LINES[lineId].circular === true) {
+        tempLineCoordinates.push([LINES[lineId].stations[0].lon, LINES[lineId].stations[0].lat]);
     }
     pushCoordinatesToLineFeatures();
 
@@ -593,6 +701,17 @@ function buildMetroLine(lineId) {
             // Border configuration (Stroke)
             'circle-stroke-width': 3,       // Thickness of the border in pixels
             'circle-stroke-color': lineColor // Color of the border
+        }
+    });
+}
+
+function deconstructMetroLines() {
+    Object.entries(additionalMapData).forEach(([k, v]) => {
+        if (map.getLayer(k)) {
+            map.removeLayer(k);
+        }
+        if (map.getSource(k)) {
+            map.removeSource(k);
         }
     });
 }
