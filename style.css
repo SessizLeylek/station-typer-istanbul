@@ -1,0 +1,305 @@
+html,
+body,
+#map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nova Flat';
+    font-size: 1vw;
+    color: #fff;
+    background-color: #111;
+    user-select: none;
+}
+
+#foreground {
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 6969;
+    width: 100vw;
+    height: 100vh;
+}
+
+.blurred {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    pointer-events: auto;
+}
+
+#menu {
+    width: 100%;
+    height: 100%;
+    max-height: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-menu {
+    width: 60%;
+    height: 80%;
+    padding: 2vh 2vw;
+    background-color: #88b8;
+    border-radius: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* RADIO BUTTONS */
+.radio-options {
+    display: flex;
+    gap: 0.5vw;
+    background-color: #fffa;
+    padding: 0.4vw;
+    margin: 0.4vw;
+    border-radius: 0.8vw;
+    width: max-content;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.radio-options input[type="radio"] {
+    display: none;
+}
+
+.radio-options label {
+    padding: 0.5vw 1vw;
+    border-radius: 0.6vw;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.radio-options input[type="radio"]:checked+label {
+    background-color: #66d;
+    color: white;
+    font-weight: bold;
+}
+
+.radio-options label:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.radio-options input[type="radio"]:checked+label:hover {
+    background-color: #55c;
+}
+
+.ofsl {
+    display: none !important;
+}
+
+.ofss {
+    display: none !important;
+}
+
+.ofas {
+    display: none !important;
+}
+
+@container style(--chosen-pool: single-line) {
+    .ofsl {
+        display: inherit !important;
+    }
+}
+
+@container style(--chosen-pool: single-side) {
+    .ofss {
+        display: inherit !important;
+    }
+}
+
+@container style(--chosen-pool: all-stations) {
+    .ofas {
+        display: inherit !important;
+    }
+}
+
+/* MENU BUTTON */
+.menu-button {
+    /*width: 50%;*/
+    padding: 1.2vw;
+    background-color: #66d;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 0.8vw;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.menu-button:hover {
+    background-color: #55c;
+}
+
+.menu-button:active {
+    transform: scale(0.98);
+}
+
+/* GAME MENU */
+#game-menu {
+    width: 80%;
+    height: 20%;
+    padding: 1vw;
+    margin-top: 65vh;
+    background-color: #88b8;
+    border-radius: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.game-info-table {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1vw;
+}
+
+.game-info {
+    background-color: #99b;
+    border-radius: 1vw;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    container-type: size;
+
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.game-info p {
+    line-height: 1;
+    font-size: calc(clamp(0px, 80cqb, 120px) * var(--scale, 1));
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+    white-space: nowrap;
+}
+
+.game-info p.maininfo {
+    margin: auto;
+    color: #fff;
+}
+
+.game-info p.subinfo {
+    --scale: 0.25;
+    color: #ddf;
+}
+
+.game-input-field {
+    width: auto;
+    height: auto;
+    flex: 0.8;
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.game-input-field>* {
+    margin: 0;
+    line-height: 1;
+    font-size: clamp(0px, 3cqi, 120px);
+    min-width: 0;
+    min-height: 0;
+    white-space: nowrap;
+}
+
+.game-input-field p {
+    margin: 0;
+    text-align: center;
+    white-space: pre;
+}
+
+#game-input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    color: transparent;
+    background-color: transparent;
+    font-family: unset;
+    border: 0;
+    padding: 0;
+    text-align: left;
+}
+
+#game-input:focus {
+    outline: transparent;
+}
+
+/* METRO SCHEME */
+.metro-scheme-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: auto;
+    margin-inline: calc(max(50% - 5vw * var(--connections), 0px) + 2vw);
+    margin-top: 1vw;
+    position: relative;
+    container-type: size;
+    flex: 0.2;
+
+    --thickness: calc(25cqi / (10 + var(--connections)));
+}
+
+.metro-track-bg,
+.metro-track-fill,
+.stations-row {
+    grid-area: 1 / 1;
+}
+
+.metro-track-bg {
+    width: 100%;
+    height: var(--thickness);
+    background-color: var(--inactive-color);
+    border-radius: 5cqb;
+}
+
+.metro-track-fill {
+    width: var(--progress);
+    height: var(--thickness);
+    background-color: var(--active-color);
+    border-radius: 10cqb;
+    transition: width 0.4s ease;
+    z-index: 1;
+}
+
+.stations-row {
+    width: 100%;
+    position: relative;
+    height: calc(var(--thickness) * 3);
+    z-index: 2;
+}
+
+.station {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.station-dot {
+    width: calc(var(--thickness) * 2);
+    height: calc(var(--thickness) * 2);
+    background-color: #ffffff;
+    border: var(--thickness) solid var(--inactive-color);
+    border-radius: 50%;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.station-dot.visited {
+    border-color: var(--active-color);
+}
