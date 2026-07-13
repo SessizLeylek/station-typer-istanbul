@@ -3,6 +3,23 @@ const DEFAULT_ZOOM = 11
 
 const METRO_TYPES = ["metro", "tram", "funicular", "cablecar"] // METRO_TYPES.includes(line.type)
 
+const sfxTypedCorrect = document.getElementById("sfx-correct");
+const sfxTypedIncorrect = document.getElementById("sfx-incorrect");
+const sfxDeleted = document.getElementById("sfx-delete");
+const sfxCountdown = document.getElementById("sfx-countdown");
+const sfxJingle = document.getElementById("sfx-jingle");
+const sfxVisit = document.getElementById("sfx-visit");
+
+const vfxVisit = document.getElementById("vfx-visit");
+
+function playSfx(source, pitch = null) {
+    source.preservesPitch = false;
+    source.playbackRate = pitch ? pitch : Math.random() * 0.1 + 0.95;
+
+    source.currentTime = 0;
+    source.play();
+}
+
 // add string format
 String.prototype.format = function (...args) {
     return this.replace(/{(\d+)}/g, (match, number) => {
@@ -66,7 +83,8 @@ function moveMapToNewLocation(location, zoom) {
         center: location,           // New target coordinates (e.g., Besiktas)
         zoom: zoom,                    // New zoom level
         essential: true,             // Ensures animation runs even if user OS has reduced motion enabled
-        duration: 500               // Animation duration in milliseconds 
+        duration: 500,               // Animation duration in milliseconds 
+        offset: [0, -64],
     });
 }
 
@@ -138,7 +156,6 @@ document.getElementById("start-button").addEventListener("click", () => {
     hideBlur();
     hideStartMenu();
     showGameMenu();
-    showGameInputField();
 
     const linesQueue = [];
 
@@ -151,14 +168,33 @@ document.getElementById("start-button").addEventListener("click", () => {
             linesQueue.push({ name: selectedLineId, reverse: traverseReverse });
             break;
         case "single-side":
+            const selectedSide = document.querySelector('input[name="side-options"]:checked').value;
+
+            Object.entries(LINES).forEach(([key, value]) => {
+                if (value.side == selectedSide)
+                    linesQueue.push({ name: key, reverse: (Math.random() < 0.5) });
+            });
             break;
         case "all-stations":
+            const includeCommuter = document.querySelector('input[name="commuter-options"]:checked').value === "enabled";
+            const includeRegional = document.querySelector('input[name="regional-options"]:checked').value === "enabled";
+            const includeMetrobus = document.querySelector('input[name="metrobus-options"]:checked').value === "enabled";
+
+            const includedTypes = [];
+            includedTypes.push(...METRO_TYPES);
+            if (includeCommuter) includedTypes.push("commuter");
+            if (includeRegional) includedTypes.push("regional");
+            if (includeMetrobus) includedTypes.push("metrobus");
+
+            Object.entries(LINES).forEach(([key, value]) => {
+                if (includedTypes.includes(value.type))
+                    linesQueue.push({ name: key, reverse: (Math.random() < 0.5) });
+            });
             break;
     }
 
-    Object.entries(LINES).toReversed().forEach(([k, v]) => buildMetroLine(k));
+    linesQueue.toReversed().forEach((line) => buildMetroLine(line.name));
     startGame(linesQueue);
-    checkInputAndRenderText();
 });
 
 // Build single line options
@@ -205,6 +241,7 @@ const gameState = {
     linesQueue: [{ name: "", reverse: false }],
 
     // progress variables
+    interlinesToSkip: { "line": ["station"] },
     isLineReversed: false,
     currentStationNdx: 0,
     currentLineNdx: 0,
@@ -233,7 +270,11 @@ function getCurrentStationInfo() {
 }
 
 // Game starting
+var gameTickIntervalID = 0;
+
 function startGame(linesQueue) {
+    showGameInputField();
+
     gameState.isActive = true;
 
     gameState.linesQueue = linesQueue;
@@ -243,14 +284,65 @@ function startGame(linesQueue) {
     gameState.wordsTyped = 0;
     gameState.startTime = performance.now();
 
-    gameState.currentLineNdx = -1;
-    tryContinueWithNextLine();
+    gameState.interlinesToSkip = {};
 
-    tickGameTime();
-    moveMapToTheCurrentStation();
+    gameState.currentLineNdx = -1;
+    tryContinueWithNextLine().then((res) => {
+        startCountdown().then(() => {
+            gameTickIntervalID = setInterval(updateTimeInfo, 500);
+
+            moveMapToTheCurrentStation();
+            enableInputField();
+        })
+    });
 }
 
-function tryContinueWithNextLine() {
+function endGame(lastLineId) {
+    clearInterval(gameTickIntervalID);
+
+    fitLineToMap(lastLineId);
+    hideGameInputField();
+    disableInputField();
+}
+
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+async function startCountdown() {
+    const countdownText = document.getElementById("countdown-text");
+    let resizeIntervalID = 0;
+    let textFontSize = 50;
+
+    const resizeCountdownText = () => {
+        textFontSize *= 0.95;
+        countdownText.style.fontSize = `${textFontSize}vh`;
+    };
+
+    const showCountdownText = async (text) => {
+        countdownText.textContent = text;
+        textFontSize = 50;
+        resizeIntervalID = setInterval(resizeCountdownText, 20);
+        await delay(1000);
+        clearInterval(resizeIntervalID);
+
+    };
+
+    const notes = [1.0905, 1.0000, 0.9439, 0.8409];
+
+    for (let i = 3; i > 0; i--) {
+        playSfx(sfxCountdown, notes[i]);
+        await showCountdownText(i);
+    }
+
+    playSfx(sfxJingle, 1);
+    showCountdownText("GO!").then(() => countdownText.textContent = "");
+}
+
+async function tryContinueWithNextLine() {
+    // Switch to the next line with delay
+    gameState.isActive = false;
+    await delay(500);
+    gameState.isActive = true;
+
     gameState.currentLineNdx++;
     updateProgressInfo();
 
@@ -273,7 +365,7 @@ function tryContinueWithNextLine() {
     return true;
 }
 
-function tryContinueWithNextStation() {
+async function tryContinueWithNextStation() {
     const wordCount = getCurrentStationInfo().name.split(/[ \/\-]+/).length;
     gameState.wordsTyped += wordCount;
     updateWpmInfo();
@@ -283,13 +375,36 @@ function tryContinueWithNextStation() {
     if (gameState.isLineReversed) {
         gameState.currentStationNdx--;
         if (gameState.currentStationNdx < 0) {
-            return tryContinueWithNextLine();
+            return await tryContinueWithNextLine();
         }
     } else {
         gameState.currentStationNdx++;
         if (gameState.currentStationNdx >= gameState.maxStationCount) {
-            return tryContinueWithNextLine();
+            return await tryContinueWithNextLine();
         }
+    }
+
+    return true;
+}
+
+async function tryFindNextStation() {
+    while (true) {
+        markNodeOnMap(getCurrentLineInfo().name, gameState.isLineReversed);
+
+        const gameContinues = await tryContinueWithNextStation();
+        if (!gameContinues) {
+            return false;
+        }
+
+        // Continue loop if next station is an already completed interlining
+        const lineInInterlines = gameState.interlinesToSkip[getCurrentLineInfo().name];
+        if (lineInInterlines) {
+            if (lineInInterlines.includes(getCurrentStationInfo().name)) {
+                continue;
+            }
+        }
+
+        break;
     }
 
     return true;
@@ -347,13 +462,6 @@ function getGameplayElapsedSeconds() {
     return elapsedSeconds;
 }
 
-function tickGameTime() {
-    if (!gameState.isActive) return;
-
-    updateTimeInfo();
-    setTimeout(tickGameTime, 500);
-}
-
 function updateWpmInfo() {
     gameWpmInfo.textContent = (gameState.wordsTyped / getGameplayElapsedSeconds() * 60).toFixed(1);
 }
@@ -396,21 +504,37 @@ inputField.addEventListener("input", () => {
     if (result) {
         inputField.value = "";
 
-        const prevLineId = gameState.linesQueue[gameState.currentLineNdx].name;
-        const gameContinues = tryContinueWithNextStation();
-        if (gameContinues) {
-            moveMapToTheCurrentStation();
-        } else {
-            fitLineToMap(prevLineId);
-            //moveMapToNewLocation(DEFAULT_LOCATION, DEFAULT_ZOOM);
-            hideGameInputField();
+        if (getCurrentStationInfo().interlined_with) {
+            const interlinedLines = getCurrentStationInfo().interlined_with;
+            const stationName = getCurrentStationInfo().name;
+            interlinedLines.forEach((line) => {
+                if (!(line in gameState.interlinesToSkip)) gameState.interlinesToSkip[line] = [];
+                gameState.interlinesToSkip[line].push(stationName);
+            });
         }
+
+        const lastLineId = gameState.linesQueue[gameState.currentLineNdx].name;
+        tryFindNextStation().then((gameContinues) => {
+            checkInputAndRenderText();
+            if (gameContinues) {
+                moveMapToTheCurrentStation();
+            } else {
+                endGame(lastLineId);
+            }
+        });
     }
 });
 
 // register accuracy on input
 inputField.addEventListener("beforeinput", (event) => {
-    if (event.data == null) return;
+    if (!gameState.isActive) return;
+
+    if (event.data == null) {
+        playSfx(sfxDeleted);
+        return;
+    }
+
+    let completelyCorrect = true;
 
     const targetText = getCurrentStationInfo().name;
     let cursorPosition = inputField.selectionStart;
@@ -419,9 +543,17 @@ inputField.addEventListener("beforeinput", (event) => {
         gameState.totalTypes++;
         if (targetText.at(cursorPosition) === c) {
             gameState.correctTypes++;
+        } else {
+            completelyCorrect = false;
         }
 
         cursorPosition++;
+    }
+
+    if (completelyCorrect) {
+        playSfx(sfxTypedCorrect);
+    } else {
+        playSfx(sfxTypedIncorrect);
     }
 
     updateAccuracyInfo();
@@ -447,6 +579,8 @@ document.addEventListener("click", (event) => {
 
 // render full text and compare with the target
 function checkInputAndRenderText() {
+    if (!gameState.isActive) return false;
+
     let identical = true;
     let builtText = "<span>";
     const targetText = getCurrentStationInfo().name;
@@ -529,6 +663,19 @@ function alignInputWithText() {
 window.addEventListener("load", alignInputWithText);
 window.addEventListener("resize", alignInputWithText);
 
+function disableInputField() {
+    inputField.disabled = true;
+    inputText.innerHTML = "";
+}
+
+function enableInputField() {
+    inputField.disabled = false;
+    inputField.focus();
+    checkInputAndRenderText();
+}
+
+disableInputField();
+
 // Game metro scheme
 const metroScheme = document.getElementById("metro-scheme");
 const stationsRow = document.getElementById("stations-row");
@@ -561,7 +708,13 @@ function updateSchemeProgress() {
     const progression = nodeNdx / (gameState.maxStationCount - 1) * 100;
 
     metroScheme.style.setProperty("--progress", `${progression}%`);
-    setTimeout(() => stationsRow.children[nodeNdx].classList.add("visited"), 100);
+
+    const currentLineNdx = gameState.currentLineNdx;
+    setTimeout(() => {
+        if (currentLineNdx !== gameState.currentLineNdx) return; // Cancel update if line changed during timeout
+
+        stationsRow.children[nodeNdx].classList.add("visited");
+    }, 100);
 }
 
 // colors
@@ -578,8 +731,6 @@ function colorBrightFromHex(hexInt) {
 
     return '#' + ((br << 16) | (bg << 8) | bb).toString(16).padStart(6, '0');
 }
-
-// vector math
 
 
 // Build metro line
@@ -614,28 +765,14 @@ function buildMetroLine(lineId) {
             tempLineCoordinates.push([branchHead.lon, branchHead.lat]);
         }
 
-        if (tempLineCoordinates.length > 1) {
-            const prevPoint = tempLineCoordinates[tempLineCoordinates.length - 2];
-            const currentPoint = tempLineCoordinates[tempLineCoordinates.length - 1];
-            const directionA = [currentPoint[0] - prevPoint[0], currentPoint[1] - prevPoint[1]];
-            const directionB = [station.lon - currentPoint[0], station.lat - currentPoint[1]];
-
-            const middlePoint0 = [currentPoint[0] + 0.1 * (0.9 * directionA[0] + 0.1 * directionB[0]), currentPoint[1] + 0.1 * (0.9 * directionA[1] + 0.1 * directionB[1])];
-            const middlePoint1 = [currentPoint[0] + 0.3 * (0.7 * directionA[0] + 0.3 * directionB[0]), currentPoint[1] + 0.3 * (0.7 * directionA[1] + 0.3 * directionB[1])];
-            const middlePoint2 = [currentPoint[0] + 0.5 * (0.5 * directionA[0] + 0.5 * directionB[0]), currentPoint[1] + 0.5 * (0.5 * directionA[1] + 0.5 * directionB[1])];
-            const middlePoint3 = [currentPoint[0] + 0.7 * (0.3 * directionA[0] + 0.7 * directionB[0]), currentPoint[1] + 0.7 * (0.3 * directionA[1] + 0.7 * directionB[1])];
-            const middlePoint4 = [currentPoint[0] + 0.9 * (0.1 * directionA[0] + 0.9 * directionB[0]), currentPoint[1] + 0.9 * (0.1 * directionA[1] + 0.9 * directionB[1])];
-            tempLineCoordinates.push(middlePoint0); 
-            tempLineCoordinates.push(middlePoint1); 
-            tempLineCoordinates.push(middlePoint2); 
-            tempLineCoordinates.push(middlePoint3); 
-            tempLineCoordinates.push(middlePoint4); 
-        }
         tempLineCoordinates.push([station.lon, station.lat]);
     }
+
     if (LINES[lineId].circular === true) {
         tempLineCoordinates.push([LINES[lineId].stations[0].lon, LINES[lineId].stations[0].lat]);
     }
+
+    tempLineCoordinates = smoothLines(tempLineCoordinates);
     pushCoordinatesToLineFeatures();
 
     // Generate data for the map
@@ -746,4 +883,116 @@ function deconstructMetroLines() {
             map.removeSource(k);
         }
     });
+}
+
+// Spline method created by gemini because i am tired
+/**
+ * Calculates an interpolated point between p0 and p1 using Catmull-Rom spline.
+ * @param {number[]} p0 - The starting point of the current segment [x, y].
+ * @param {number[]} p1 - The ending point of the current segment [x, y].
+ * @param {number} t - The interpolation factor between 0 and 1.
+ * @param {number[]} [pPre=null] - The control point before p0. Defaults to p0 if null.
+ * @param {number[]} [pPost=null] - The control point after p1. Defaults to p1 if null.
+ * @returns {number[]} The interpolated point [x, y].
+ */
+function getSmoothedPosition(p0, p1, t, pPre = null, pPost = null) {
+    const cPre = pPre || p0;
+    const cPost = pPost || p1;
+
+    const s = 0.7;
+
+    // Calculate tangents (velocities) at p0 and p1
+    const m0x = s * (p1[0] - cPre[0]);
+    const m0y = s * (p1[1] - cPre[1]);
+    const m1x = s * (cPost[0] - p0[0]);
+    const m1y = s * (cPost[1] - p0[1]);
+
+    const t2 = t * t;
+    const t3 = t2 * t;
+
+    // Standard Hermite spline basis functions
+    const h00 = 2 * t3 - 3 * t2 + 1;
+    const h10 = t3 - 2 * t2 + t;
+    const h01 = -2 * t3 + 3 * t2;
+    const h11 = t3 - t2;
+
+    // Calculate final interpolated coordinates
+    const x = h00 * p0[0] + h10 * m0x + h01 * p1[0] + h11 * m1x;
+    const y = h00 * p0[1] + h10 * m0y + h01 * p1[1] + h11 * m1y;
+
+    return [x, y];
+}
+
+// Spline method created by gemini because i am tired
+// Smooths lines defined by an array of [lon, lat]
+function smoothLines(pointArray) {
+    if (pointArray.length < 2) {
+        return pointArray;
+    }
+
+    const tempResult = [];
+    const steps = 4;
+
+    for (let i = 0; i < pointArray.length - 1; i++) {
+        const p0 = pointArray[i];
+        const p1 = pointArray[i + 1];
+
+        const pPre = (i === 0) ? null : pointArray[i - 1];
+        const pPost = (i === pointArray.length - 2) ? null : pointArray[i + 2];
+
+        tempResult.push(p0);
+
+        for (let j = 1; j < steps; j++) {
+            const t = j / steps;
+            tempResult.push(getSmoothedPosition(p0, p1, t, pPre, pPost));
+        }
+    }
+
+    tempResult.push(pointArray[pointArray.length - 1]);
+
+    return tempResult;
+}
+
+function markNodeOnMap(lineId, markFromTail) {
+    const hollowPointId = `hpoints-${lineId}`;
+    const filledPointId = `fpoints-${lineId}`;
+
+    vfxVisit.style.setProperty("--color", colorBrightFromHex(LINE_COLORS[lineId]));
+
+    setTimeout(() => {
+        // Transfer points
+        const hollowPointsData = additionalMapData[hollowPointId];
+        const filledPointsData = additionalMapData[filledPointId];
+
+        let removedCoordinate = null;
+        [removedCoordinate] = hollowPointsData.geometry.coordinates.splice(markFromTail ? hollowPointsData.geometry.coordinates.length - 1 : 0, 1);
+        filledPointsData.geometry.coordinates.push(removedCoordinate);
+
+        map.getSource(hollowPointId).setData(hollowPointsData);
+        map.getSource(filledPointId).setData(filledPointsData);
+
+        // Play vfx
+        playVisitEffectAtLocation(removedCoordinate);
+
+        // Play sound
+        playSfx(sfxVisit);
+    }, 100);
+}
+
+function playVisitEffectAtLocation(location) {
+    const marker = new maplibregl.Marker({
+        element: vfxVisit,
+        anchor: 'center'
+    })
+        .setLngLat(location)
+        .addTo(map);
+
+    void vfxVisit.offsetWidth;
+    vfxVisit.classList.add("play-vfx");
+
+    vfxVisit.addEventListener('animationend', () => {
+        marker.remove();
+
+        vfxVisit.classList.remove("play-vfx");
+    }, { once: true });
 }

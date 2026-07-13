@@ -11,6 +11,10 @@ body,
     user-select: none;
 }
 
+#map {
+    position: relative;
+}
+
 #foreground {
     top: 0;
     left: 0;
@@ -140,6 +144,24 @@ body,
     transform: scale(0.98);
 }
 
+#countdown {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+#countdown-text {
+    height: auto;
+    color: #fff8;
+    font-size: 50vh;
+    font-weight: bolder;
+}
+
 /* GAME MENU */
 #game-menu {
     width: 80%;
@@ -236,6 +258,30 @@ body,
 
 #game-input:focus {
     outline: transparent;
+}
+
+#vfx-visit {
+    position: absolute;
+    pointer-events: none;
+}
+
+#vfx-visit svg {
+    opacity: 0;
+}
+
+#vfx-visit.play-vfx svg {
+    animation: pulse-out 0.5s ease-out 1 forwards;
+}
+
+@keyframes pulse-out {
+    0% {
+        scale: 0;
+        opacity: 1;
+    }
+    100% {
+        scale: 1;
+        opacity: 0;
+    }
 }
 
 /* METRO SCHEME */

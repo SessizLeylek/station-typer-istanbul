@@ -26,11 +26,11 @@
                     <input type="radio" id="opt-pool-single-line" value="single-line" name="pool-options" checked>
                     <label for="opt-pool-single-line">Single Line</label>
 
-                    <!-- <input type="radio" id="opt-pool-single-side" value="single-side" name="pool-options">
+                    <input type="radio" id="opt-pool-single-side" value="single-side" name="pool-options">
                     <label for="opt-pool-single-side">Single Side</label>
 
                     <input type="radio" id="opt-pool-all-stations" value="all-stations" name="pool-options">
-                    <label for="opt-pool-all-stations">All Stations</label> -->
+                    <label for="opt-pool-all-stations">All Stations</label>
                 </div>
 
                 <!-- SINGLE LINE OPTIONS (GENERATED FROM DATA) -->
@@ -53,10 +53,10 @@
 
                 <!-- SINGLE SIDE OPTIONS -->
                 <div id="option-side" class="radio-options ofss">
-                    <input type="radio" id="opt-side-eu" name="side-options" checked>
+                    <input type="radio" id="opt-side-eu" value="EU" name="side-options" checked>
                     <label for="opt-side-eu">European Side Only</label>
 
-                    <input type="radio" id="opt-side-an" name="side-options">
+                    <input type="radio" id="opt-side-an" value="AN" name="side-options">
                     <label for="opt-side-an">Anatolian Side Only</label>
                 </div>
 
@@ -65,10 +65,10 @@
                 <div id="option-commuter" class="radio-options ofas">
                     <label style="pointer-events: none;">Commuter Lines: </label>
 
-                    <input type="radio" id="opt-commuter-yes" name="commuter-options" checked>
+                    <input type="radio" id="opt-commuter-yes" value="enabled" name="commuter-options" checked>
                     <label for="opt-commuter-yes">Enabled</label>
 
-                    <input type="radio" id="opt-commuter-no" name="commuter-options">
+                    <input type="radio" id="opt-commuter-no" value="disabled" name="commuter-options">
                     <label for="opt-commuter-no">Disabled</label>
                 </div>
 
@@ -76,10 +76,10 @@
                 <div id="option-regional" class="radio-options ofas">
                     <label style="pointer-events: none;">Regional Lines: </label>
 
-                    <input type="radio" id="opt-regional-yes" name="regional-options">
+                    <input type="radio" id="opt-regional-yes" value="enabled" name="regional-options">
                     <label for="opt-regional-yes">Enabled</label>
 
-                    <input type="radio" id="opt-regional-no" name="regional-options" checked>
+                    <input type="radio" id="opt-regional-no" value="disabled" name="regional-options" checked>
                     <label for="opt-regional-no">Disabled</label>
                 </div>
 
@@ -87,10 +87,10 @@
                 <div id="option-metrobus" class="radio-options ofas">
                     <label style="pointer-events: none;">Bus Rapid Transit: </label>
 
-                    <input type="radio" id="opt-metrobus-yes" name="metrobus-options">
+                    <input type="radio" id="opt-metrobus-yes" value="enabled" name="metrobus-options">
                     <label for="opt-metrobus-yes">Enabled</label>
 
-                    <input type="radio" id="opt-metrobus-no" name="metrobus-options" checked>
+                    <input type="radio" id="opt-metrobus-no" value="disabled" name="metrobus-options" checked>
                     <label for="opt-metrobus-no">Disabled</label>
                 </div>
 
@@ -145,8 +145,34 @@
                     </div>
                 </div>
             </div>
+
+            <!-- GAME START COUNTDOWN -->
+            <div id="countdown">
+                <p id="countdown-text"></p>
+            </div>
+
+            <!-- STATION VISIT EFFECT -->
+            <div id="vfx-visit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+                    <defs>
+                        <radialGradient id="vfx-visit-grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                            <stop offset="0%" stop-color="var(--color)" stop-opacity="0" />
+                            <stop offset="100%" stop-color="var(--color)" stop-opacity="0.784" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="128" cy="128" r="126" fill="url(#vfx-visit-grad)" stroke="var(--color)" stroke-width="4" />
+                </svg>
+            </div>
         </div>
     </div>
+
+    <!-- SOUNDS -->
+    <audio id="sfx-correct" src="sound/correct.ogg" preload="auto"></audio>
+    <audio id="sfx-incorrect" src="sound/incorrect.ogg" preload="auto"></audio>
+    <audio id="sfx-delete" src="sound/delete.ogg" preload="auto"></audio>
+    <audio id="sfx-countdown" src="sound/countdown.ogg" preload="auto"></audio>
+    <audio id="sfx-jingle" src="sound/jingle.ogg" preload="auto"></audio>
+    <audio id="sfx-visit" src="sound/visit.ogg" preload="auto"></audio>
 
     <script>
         const LINE_COLORS = {
@@ -935,7 +961,7 @@
                     {
                         "name": "Yeşilpınar",
                         "lat": 41.0799901,
-                        "lon": 28.9352699
+                        "lon": 28.9182526,
                     },
                     {
                         "name": "Kazım Karabekir",
