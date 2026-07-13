@@ -48,6 +48,14 @@ const map = new maplibregl.Map({
     touchZoomRotate: false       // Disables pinch/rotate gestures on mobile
 });
 
+const cursorElement = document.getElementById("vfx-cursor");
+const cursorMarker = new maplibregl.Marker({
+    element: cursorElement,
+    anchor: 'center'
+})
+    .setLngLat([0, 0])
+    .addTo(map);
+
 // Wait until the map engine fetches the base stylesheet
 map.on('style.load', () => {
     const layers = map.getStyle().layers;
@@ -291,6 +299,8 @@ function startGame(linesQueue) {
         startCountdown().then(() => {
             gameTickIntervalID = setInterval(updateTimeInfo, 500);
 
+            putCursorOnStation();
+
             moveMapToTheCurrentStation();
             enableInputField();
         })
@@ -300,6 +310,7 @@ function startGame(linesQueue) {
 function endGame(lastLineId) {
     clearInterval(gameTickIntervalID);
 
+    putAwayCursor();
     fitLineToMap(lastLineId);
     hideGameInputField();
     disableInputField();
@@ -390,6 +401,7 @@ async function tryContinueWithNextStation() {
 async function tryFindNextStation() {
     while (true) {
         markNodeOnMap(getCurrentLineInfo().name, gameState.isLineReversed);
+        moveCursorAlongLine();
 
         const gameContinues = await tryContinueWithNextStation();
         if (!gameContinues) {
@@ -995,4 +1007,65 @@ function playVisitEffectAtLocation(location) {
 
         vfxVisit.classList.remove("play-vfx");
     }, { once: true });
+}
+
+function putAwayCursor() {
+    cursorMarker.setLngLat([0, 0]);
+}
+
+function putCursorOnStation() {
+    const station = getCurrentStationInfo();
+    const nextStation = getCurrentLineInfo().stations[gameState.currentStationNdx + (gameState.isLineReversed ? -1 : 1)];
+
+    const location = [station.lon, station.lat];
+    const nextLocation = [nextStation.lon, nextStation.lat];
+
+    const angle = -Math.atan2(nextLocation[1] - location[1], nextLocation[0] - location[0]);
+
+    cursorElement.style.setProperty("--angle", `${angle}rad`);
+    cursorMarker.setLngLat(location);
+}
+
+async function moveCursorAlongLine() {
+    let preP0Ndx, p0Ndx, p1Ndx, p2Ndx, postP2Ndx;
+    if (gameState.isLineReversed) {
+        p0Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : gameState.maxStationCount - 1;
+        preP0Ndx = p0Ndx + 1 < gameState.maxStationCount ? p0Ndx + 1 : gameState.maxStationCount - 1;
+        p2Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : 0;
+        postP2Ndx = p2Ndx - 1 >= 0 ? p2Ndx - 1 : 0;
+    } else {
+        p1Ndx = gameState.currentStationNdx;
+        p0Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : 0;
+        preP0Ndx = p0Ndx - 1 >= 0 ? p0Ndx - 1 : 0;
+        p2Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : gameState.maxStationCount - 1;
+        postP2Ndx = p2Ndx + 1 < gameState.maxStationCount ? p2Ndx + 1 : gameState.maxStationCount - 1;
+        p1Ndx = gameState.currentStationNdx;
+    }
+
+    const loc = (s) => [s.lon, s.lat];
+
+    const p0 = loc(getCurrentLineInfo().stations[p0Ndx]);
+    const p1 = loc(getCurrentLineInfo().stations[p1Ndx]);
+    const p2 = loc(getCurrentLineInfo().stations[p2Ndx]);
+    const preP0 = loc(getCurrentLineInfo().stations[preP0Ndx]);
+    const postP2 = loc(getCurrentLineInfo().stations[postP2Ndx]);
+
+    for (let i = -5; i <= 5; i++) {
+        await delay(20);
+        if (i < 0) {
+            const pos2 = getSmoothedPosition(p0, p1, (10 + i - 0.1) / 10, preP0, p2);
+            const pos = getSmoothedPosition(p0, p1, (10 + i) / 10, preP0, p2);
+            const a = -Math.atan2(pos[1] - pos2[1], pos[0] - pos2[0]);
+
+            cursorElement.style.setProperty("--angle", `${a}rad`);
+            cursorMarker.setLngLat(pos);
+        } else {
+            const pos2 = getSmoothedPosition(p1, p2, (i + 0.1) / 10, p0, postP2);
+            const pos = getSmoothedPosition(p1, p2, (i) / 10, p0, postP2);
+            const a = -Math.atan2(pos2[1] - pos[1], pos2[0] - pos[0]);
+
+            cursorElement.style.setProperty("--angle", `${a}rad`);
+            cursorMarker.setLngLat(pos);
+        }
+    }
 }

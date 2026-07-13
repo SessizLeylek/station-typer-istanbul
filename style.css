@@ -273,6 +273,15 @@ body,
     animation: pulse-out 0.5s ease-out 1 forwards;
 }
 
+#vfx-cursor {
+    position: absolute;
+    pointer-events: none;
+}
+
+#vfx-cursor svg {
+    transform: rotate(var(--angle));
+}
+
 @keyframes pulse-out {
     0% {
         scale: 0;
