@@ -371,6 +371,7 @@ async function tryContinueWithNextLine() {
         gameState.currentStationNdx = 0;
     }
 
+    putCursorOnStation();
     buildMetroScheme(gameState.linesQueue[gameState.currentLineNdx].name);
 
     return true;
@@ -1029,6 +1030,7 @@ function putCursorOnStation() {
 async function moveCursorAlongLine() {
     let preP0Ndx, p0Ndx, p1Ndx, p2Ndx, postP2Ndx;
     if (gameState.isLineReversed) {
+        p1Ndx = gameState.currentStationNdx;
         p0Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : gameState.maxStationCount - 1;
         preP0Ndx = p0Ndx + 1 < gameState.maxStationCount ? p0Ndx + 1 : gameState.maxStationCount - 1;
         p2Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : 0;
