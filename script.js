@@ -989,7 +989,7 @@ function markNodeOnMap(lineId, markFromTail) {
 
         // Play sound
         playSfx(sfxVisit);
-    }, 100);
+    }, 200);
 }
 
 function playVisitEffectAtLocation(location) {
@@ -1052,18 +1052,25 @@ async function moveCursorAlongLine() {
     const preP0 = loc(getCurrentLineInfo().stations[preP0Ndx]);
     const postP2 = loc(getCurrentLineInfo().stations[postP2Ndx]);
 
-    for (let i = -5; i <= 5; i++) {
+    const easeIn = (t) => t * t * t;
+    const easeOut = (t) => 1 - (1 - t) * (1 - t) * (1 - t);
+
+    const steps = 15;
+
+    for (let i = -steps; i <= steps; i++) {
         await delay(20);
         if (i < 0) {
-            const pos2 = getSmoothedPosition(p0, p1, (10 + i - 0.1) / 10, preP0, p2);
-            const pos = getSmoothedPosition(p0, p1, (10 + i) / 10, preP0, p2);
+            const t = easeIn(1 + (i / steps)) / 2 + 0.5;
+            const pos2 = getSmoothedPosition(p0, p1, t - 0.01, preP0, p2);
+            const pos = getSmoothedPosition(p0, p1, t, preP0, p2);
             const a = -Math.atan2(pos[1] - pos2[1], pos[0] - pos2[0]);
 
             cursorElement.style.setProperty("--angle", `${a}rad`);
             cursorMarker.setLngLat(pos);
         } else {
-            const pos2 = getSmoothedPosition(p1, p2, (i + 0.1) / 10, p0, postP2);
-            const pos = getSmoothedPosition(p1, p2, (i) / 10, p0, postP2);
+            const t = easeOut(i / steps) / 2;
+            const pos2 = getSmoothedPosition(p1, p2, t + 0.01, p0, postP2);
+            const pos = getSmoothedPosition(p1, p2, t, p0, postP2);
             const a = -Math.atan2(pos2[1] - pos[1], pos2[0] - pos[0]);
 
             cursorElement.style.setProperty("--angle", `${a}rad`);
