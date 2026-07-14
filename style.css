@@ -122,6 +122,70 @@ body,
     }
 }
 
+/* TOGGLE OPTIONS */
+.toggle-options {
+    display: flex;
+    gap: 0.5vw;
+    background-color: #fffa;
+    padding: 0.4vw;
+    margin: 0.4vw;
+    border-radius: 0.8vw;
+    width: max-content;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.toggle-options div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.toggle-options p {
+    padding: 0;
+    margin: 0;
+    border-radius: 0.6vw;
+    color: #333;
+    text-align: center;
+}
+
+.toggle-options input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+
+    padding: 1.25vw 1.25vw;
+    border-radius: 0.6vw;
+    cursor: pointer;
+
+    background-color: #555;
+    transition: all 0.2s ease;
+
+    /**background-image: url('icons/volume.svg');*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.5vw 1.5vw;
+}
+
+.toggle-options input[type="checkbox"]:hover {
+    background-color: #666;
+}
+
+.toggle-options input[type="checkbox"]:checked {
+    background-color: #66d;
+    font-weight: bold;
+}
+
+.toggle-options input[type="checkbox"]:checked:hover {
+    background-color: #55c;
+}
+
 /* MENU BUTTON */
 .menu-button {
     /*width: 50%;*/
@@ -143,6 +207,72 @@ body,
 .menu-button:active {
     transform: scale(0.98);
 }
+
+#github-button {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50vw, 50vh);
+
+    margin: 0.5vw;
+    padding: 1.25vw 1.25vw;
+    border-radius: 0.6vw;
+    cursor: pointer;
+
+    background-color: #ddf;
+
+    background-image: url('icons/github.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2vw;
+
+    transition: background-color 0.2s ease, background-size 0.1s ease;
+}
+
+#github-button:hover {
+    background-color: #aaf;
+}
+
+#github-button:active {
+    background-size: 1.6vw;
+}
+
+#lang-button {
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50vw, 50vh);
+
+    width: 2.5vw;
+    height: 2.5vw;
+    margin: 0.5vw;
+    border-radius: 0.6vw;
+
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#lang-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    filter: brightness(1);
+    transform: rotate(0deg);
+
+    transition: filter 0.2s ease, transform 0.1s ease;
+}
+
+#lang-button:hover img{
+    filter: brightness(0.8);
+}
+
+#lang-button:active img{
+    transform: rotate(360deg);
+}
+
+/* COUNTDOWN */
 
 #countdown {
     height: 100%;
@@ -287,6 +417,7 @@ body,
         scale: 0;
         opacity: 1;
     }
+
     100% {
         scale: 1;
         opacity: 0;

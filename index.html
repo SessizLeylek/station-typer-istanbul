@@ -94,23 +94,40 @@
                     <label for="opt-metrobus-no">Disabled</label>
                 </div>
 
+                <!-- OPTIONS -->
+                <div class="toggle-options">
+                    <div>
+                        <input id="toggle-volume" type="checkbox" style="background-image:url('icons/volume.svg')" checked>
+                        <input id="toggle-random" type="checkbox" style="background-image:url('icons/shuffle.svg')">
+                        <input id="toggle-nohint" type="checkbox" style="background-image:url('icons/no-hint.svg')">
+                        <input id="toggle-hint-1" type="checkbox" style="background-image:url('icons/hint-initial.svg');display:none">
+                    </div>
+                    <p id="toggle-info-text">&shy;</p>
+                </div>
+
                 <!-- START BUTTON -->
                 <div style="flex:1; display:flex; flex-direction:column;">
                     <div style="flex:1"></div>
                     <div id="start-button" class="menu-button">START!</div>
                     <div style="height:1vw;"></div>
                 </div>
+
+                <!-- LANGUAGE BUTTON -->
+                <div id="lang-button"><img src="flag/us.png"></div>
+
+                <!-- GITHUB BUTTON -->
+                <div id="github-button"></div>
             </div>
 
             <!-- GAME MENU -->
             <div id="game-menu" style="display:none">
                 <div class="game-info-table" style="flex:0.18;">
                     <div class="game-info">
-                        <p id="ginfo-wpm" class="maininfo">0</p>
+                        <p id="ginfo-wpm" class="maininfo">-</p>
                         <p class="subinfo">WPM</p>
                     </div>
                     <div class="game-info">
-                        <p id="ginfo-time" class="maininfo">00:00</p>
+                        <p id="ginfo-time" class="maininfo">-</p>
                         <p class="subinfo">Timer</p>
                     </div>
                 </div>
@@ -136,11 +153,11 @@
                 </div>
                 <div class="game-info-table" style="flex:0.18;">
                     <div class="game-info">
-                        <p id="ginfo-acc" class="maininfo">0%</p>
+                        <p id="ginfo-acc" class="maininfo">-</p>
                         <p class="subinfo">Accuracy</p>
                     </div>
                     <div class="game-info">
-                        <p id="ginfo-prog" class="maininfo">0/0</p>
+                        <p id="ginfo-prog" class="maininfo">-</p>
                         <p class="subinfo">Progress</p>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ const sfxVisit = document.getElementById("sfx-visit");
 const vfxVisit = document.getElementById("vfx-visit");
 
 function playSfx(source, pitch = null) {
+    if (!isVolumeOn) return;
+
     source.preservesPitch = false;
     source.playbackRate = pitch ? pitch : Math.random() * 0.1 + 0.95;
 
@@ -177,6 +179,8 @@ document.getElementById("start-button").addEventListener("click", () => {
     hideStartMenu();
     showGameMenu();
 
+    updateOptions();
+
     const linesQueue = [];
 
     const selectedPoolValue = document.querySelector('input[name="pool-options"]:checked').value;
@@ -192,7 +196,7 @@ document.getElementById("start-button").addEventListener("click", () => {
 
             Object.entries(LINES).forEach(([key, value]) => {
                 if (value.side == selectedSide)
-                    linesQueue.push({ name: key, reverse: (Math.random() < 0.5) });
+                    linesQueue.push({ name: key, reverse: (isOrderRandom ? (Math.random() < 0.5) : false) });
             });
             break;
         case "all-stations":
@@ -208,14 +212,25 @@ document.getElementById("start-button").addEventListener("click", () => {
 
             Object.entries(LINES).forEach(([key, value]) => {
                 if (includedTypes.includes(value.type))
-                    linesQueue.push({ name: key, reverse: (Math.random() < 0.5) });
+                    linesQueue.push({ name: key, reverse: (isOrderRandom ? (Math.random() < 0.5) : false) });
             });
             break;
+    }
+
+    if (isOrderRandom) {
+        shuffleArray(linesQueue);
     }
 
     linesQueue.toReversed().forEach((line) => buildMetroLine(line.name));
     startGame(linesQueue);
 });
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 // Build single line options
 window.addEventListener("load", () => {
@@ -251,6 +266,95 @@ const optionPool = document.getElementById("option-pool");
 document.body.style.setProperty("--chosen-pool", "single-line");
 optionPool.addEventListener("change", (event) => {
     document.body.style.setProperty("--chosen-pool", event.target.value);
+});
+
+// Option toggles
+const toggleInfoText = document.getElementById("toggle-info-text");
+const toggleVolume = document.getElementById("toggle-volume");
+const toggleRandom = document.getElementById("toggle-random");
+const toggleNoHint = document.getElementById("toggle-nohint");
+const toggleHintInitial = document.getElementById("toggle-hint-1");
+var toggleMouseEnters = 0;
+
+var isVolumeOn = true;
+var isOrderRandom = false;
+var areHintsHidden = false;
+var showOnlyInitialLetter = false;
+
+function updateOptions() {
+    isVolumeOn = toggleVolume.checked;
+    isOrderRandom = toggleRandom.checked;
+    areHintsHidden = toggleNoHint.checked;
+    showOnlyInitialLetter = toggleHintInitial.checked;
+}
+
+toggleVolume.addEventListener("mouseenter", () => {
+    toggleMouseEnters++;
+    toggleInfoText.textContent = localize("volume");
+});
+
+toggleRandom.addEventListener("mouseenter", () => {
+    toggleMouseEnters++;
+    toggleInfoText.textContent = localize("random");
+});
+
+toggleNoHint.addEventListener("mouseenter", () => {
+    toggleMouseEnters++;
+    toggleInfoText.textContent = localize("nohint");
+});
+
+toggleHintInitial.addEventListener("mouseenter", () => {
+    toggleMouseEnters++;
+    toggleInfoText.textContent = localize("initialhint");
+});
+
+toggleVolume.addEventListener("mouseleave", () => {
+    toggleMouseEnters--;
+    if (toggleMouseEnters <= 0) {
+        toggleInfoText.textContent = "\u00AD";
+    }
+});
+
+toggleRandom.addEventListener("mouseleave", () => {
+    toggleMouseEnters--;
+    if (toggleMouseEnters <= 0) {
+        toggleInfoText.textContent = "\u00AD";
+    }
+});
+
+toggleNoHint.addEventListener("mouseleave", () => {
+    toggleMouseEnters--;
+    if (toggleMouseEnters <= 0) {
+        toggleInfoText.textContent = "\u00AD";
+    }
+});
+
+toggleHintInitial.addEventListener("mouseleave", () => {
+    toggleMouseEnters--;
+    if (toggleMouseEnters <= 0) {
+        toggleInfoText.textContent = "\u00AD";
+    }
+});
+
+toggleNoHint.addEventListener("click", () => {
+    toggleHintInitial.style.display = toggleNoHint.checked ? "block" : "none";
+});
+
+const githubButton = document.getElementById("github-button");
+githubButton.addEventListener("click", () => {
+    setTimeout(window.open("https://github.com/SessizLeylek/station-typer-istanbul", "_blank"), 100);
+});
+
+// Language Option
+var isTurkish = false;
+const langButton = document.getElementById("lang-button");
+const langButtonFlag = langButton.children[0];
+
+langButton.addEventListener("click", () => {
+    isTurkish = !isTurkish;
+    langButtonFlag.src = `flag/${isTurkish ? "tr" : "us"}.png`;
+
+    localizeMenus();
 });
 
 // GAMEPLAY
@@ -295,6 +399,8 @@ var gameTickIntervalID = 0;
 function startGame(linesQueue) {
     showGameInputField();
 
+    resetAllInfoText();
+
     gameState.isActive = true;
 
     gameState.linesQueue = linesQueue;
@@ -302,13 +408,13 @@ function startGame(linesQueue) {
     gameState.totalTypes = 0;
     gameState.correctTypes = 0;
     gameState.wordsTyped = 0;
-    gameState.startTime = performance.now();
 
     gameState.interlinesToSkip = {};
 
     gameState.currentLineNdx = -1;
     tryContinueWithNextLine().then((res) => {
         startCountdown().then(() => {
+            gameState.startTime = performance.now();
             gameTickIntervalID = setInterval(updateTimeInfo, 500);
 
             putCursorOnStation();
@@ -357,7 +463,7 @@ async function startCountdown() {
     }
 
     playSfx(sfxJingle, 1);
-    showCountdownText("GO!").then(() => countdownText.textContent = "");
+    showCountdownText(localize("go")).then(() => countdownText.textContent = "");
 }
 
 async function tryContinueWithNextLine() {
@@ -504,6 +610,13 @@ function getGameplayElapsedSeconds() {
     return elapsedSeconds;
 }
 
+function resetAllInfoText() {
+    gameWpmInfo.textContent = "0";
+    gameTimeInfo.textContent = "00:00";
+    gameAccuracyInfo.textContent = localize("acc").format("0");
+    gameProgressInfo.textContent = "0/0";
+}
+
 function updateWpmInfo() {
     gameWpmInfo.textContent = (gameState.wordsTyped / getGameplayElapsedSeconds() * 60).toFixed(1);
 }
@@ -515,7 +628,7 @@ function updateTimeInfo() {
 }
 
 function updateAccuracyInfo() {
-    gameAccuracyInfo.textContent = "{0}%".format(((gameState.correctTypes / gameState.totalTypes) * 100).toFixed(2));;
+    gameAccuracyInfo.textContent = localize("acc").format(((gameState.correctTypes / gameState.totalTypes) * 100).toFixed(2));;
 }
 
 function updateProgressInfo() {
@@ -640,8 +753,17 @@ function checkInputAndRenderText() {
             currentColor = "gray";
 
             if (cursorHere) {
-                builtText += "</span><span style='color:#999;background-color:#fff3'>" + targetText.at(i) +
-                    "</span><span style='color:#999'>" + targetText.substring(i + 1) + "</span>";
+                var nextOneCharacter = targetText.at(i);
+                var nextRemainingCharacters = targetText.substring(i + 1);
+                if (areHintsHidden) {
+                    if (!showOnlyInitialLetter || i > 0) {
+                        nextOneCharacter = redactText(nextOneCharacter);
+                    }
+                    nextRemainingCharacters = redactText(nextRemainingCharacters);
+                }
+
+                builtText += "</span><span style='color:#999;background-color:#fff3'>" + nextOneCharacter +
+                    "</span><span style='color:#999'>" + nextRemainingCharacters + "</span>";
             } else {
                 builtText += "</span><span style='color:#999'>" + targetText.substring(i) + "</span>";
             }
@@ -692,6 +814,10 @@ function checkInputAndRenderText() {
     inputText.innerHTML = builtText;
 
     return identical;
+}
+
+function redactText(text) {
+    return text.replace(/\p{L}/gu, '*');
 }
 
 function alignInputWithText() {
@@ -1209,5 +1335,49 @@ async function progressCursorAlongLine() {
         const pos2 = getSmoothedPosition(loc(nextStationBranch), loc(nextStation), nextStationProximity * 0.9 + 0.1);
         const pos = getSmoothedPosition(loc(nextStationBranch), loc(nextStation), nextStationProximity);
         putCursorBetweenLocations(pos, pos2);
+    }
+}
+
+const DICT = {
+    "go": ["GO!", "BAŞLA!"],
+    "acc": ["{0}%", "%{0}"],
+    "volume": ["Sound Effects", "Ses Efektleri"],
+    "random": ["Randomize Order", "Sırayı Karıştır"],
+    "nohint": ["Hide Name Hints", "İsim İpuçlarını Gizle"],
+    "initialhint": ["Only Show Initial Letter", "Sadece İlk Harfi Göster"],
+}
+
+function localize(key) {
+    return DICT[key][isTurkish ? 1 : 0];
+}
+
+const menuLocalizations = [
+    [document.querySelector("#start-button"), "START!", "BAŞLAT!"],
+    [document.querySelector("#option-pool > label:nth-child(2)"), "Single Line", "Tek Hat"],
+    [document.querySelector("#option-pool > label:nth-child(4)"), "Single Side", "Tek Yaka"],
+    [document.querySelector("#option-pool > label:nth-child(6)"), "All Stations", "Tüm İstasyonlar"],
+    [document.querySelector("#option-side > label:nth-child(2)"), "European Side Only", "Sadece Avrupa Yakası"],
+    [document.querySelector("#option-side > label:nth-child(4)"), "Anatolian Side Only", "Sadece Anadolu Yakası"],
+    [document.querySelector("#option-commuter > label:nth-child(1)"), "Commuter Lines: ", "Banliyö Hatları: "],
+    [document.querySelector("#option-regional > label:nth-child(1)"), "Regional Lines: ", "Bölgesel Hatlar: "],
+    [document.querySelector("#option-metrobus > label:nth-child(1)"), "Bus Rapid Transit: ", "Metrobüs: "],
+    [document.querySelector("#option-commuter > label:nth-child(3)"), "Enabled", "Etkin"],
+    [document.querySelector("#option-regional > label:nth-child(3)"), "Enabled", "Etkin"],
+    [document.querySelector("#option-metrobus > label:nth-child(3)"), "Enabled", "Etkin"],
+    [document.querySelector("#option-commuter > label:nth-child(5)"), "Disabled", "Devre Dışı"],
+    [document.querySelector("#option-regional > label:nth-child(5)"), "Disabled", "Devre Dışı"],
+    [document.querySelector("#option-metrobus > label:nth-child(5)"), "Disabled", "Devre Dışı"],
+    [document.querySelector("#game-menu > div:nth-child(1) > div:nth-child(1) > p.subinfo"), "WPM", "DBK"],
+    [document.querySelector("#game-menu > div:nth-child(1) > div:nth-child(2) > p.subinfo"), "Timer", "Zamanlayıcı"],
+    [document.querySelector("#game-menu > div:nth-child(3) > div:nth-child(1) > p.subinfo"), "Accuracy", "Doğruluk"],
+    [document.querySelector("#game-menu > div:nth-child(3) > div:nth-child(2) > p.subinfo"), "Progress", "İlerleme"],
+    [document.querySelector("#back-button"), "RETURN BACK!", "GERİ DÖN!"],
+];
+
+function localizeMenus() {
+    for (l of menuLocalizations) {
+        const el = l[0];
+        const localization = isTurkish ? l[2] : l[1];
+        el.textContent = localization;
     }
 }
