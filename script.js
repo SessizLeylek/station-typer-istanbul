@@ -452,8 +452,8 @@ function moveMapToTheCurrentStation() {
         otherLocation[0] = otherStation.lon;
         otherLocation[1] = otherStation.lat;
     } else {
-        const nextIndex = gameState.isLineReversed ? -1 : 1;
-        const otherStation = getCurrentLineInfo().stations[gameState.currentStationNdx + nextIndex];
+        const deltaIndex = gameState.isLineReversed ? 1 : -1;
+        const otherStation = getCurrentLineInfo().stations[gameState.currentStationNdx + deltaIndex];
         otherLocation[0] = otherStation.lon;
         otherLocation[1] = otherStation.lat;
     }
@@ -772,6 +772,7 @@ function buildMetroLine(lineId) {
 
     for (const station of LINES[lineId].stations) {
         if (station.branched_from) {
+            tempLineCoordinates = smoothLines(tempLineCoordinates);
             pushCoordinatesToLineFeatures();
 
             const branchHead = LINES[lineId].stations.find((st) => st.name === station.branched_from);
@@ -912,7 +913,7 @@ function getSmoothedPosition(p0, p1, t, pPre = null, pPost = null) {
     const cPre = pPre || p0;
     const cPost = pPost || p1;
 
-    const s = 0.7;
+    const s = 0.6;
 
     // Calculate tangents (velocities) at p0 and p1
     const m0x = s * (p1[0] - cPre[0]);
@@ -1021,6 +1022,10 @@ function putCursorOnStation() {
     const location = [station.lon, station.lat];
     const nextLocation = [nextStation.lon, nextStation.lat];
 
+    putCursorBetweenLocations(location, nextLocation);
+}
+
+function putCursorBetweenLocations(location, nextLocation) {
     const angle = -Math.atan2(nextLocation[1] - location[1], nextLocation[0] - location[0]);
 
     cursorElement.style.setProperty("--angle", `${angle}rad`);
@@ -1028,6 +1033,9 @@ function putCursorOnStation() {
 }
 
 async function moveCursorAlongLine() {
+    const stations = getCurrentLineInfo().stations;
+
+    // Decide on the indices of the bezier points
     let preP0Ndx, p0Ndx, p1Ndx, p2Ndx, postP2Ndx;
     if (gameState.isLineReversed) {
         p1Ndx = gameState.currentStationNdx;
@@ -1044,37 +1052,122 @@ async function moveCursorAlongLine() {
         p1Ndx = gameState.currentStationNdx;
     }
 
+    let nextStation = null;
+    let nextStationBranch = null;
+    let nextStationProximity = 0;
+
+    if (gameState.isLineReversed) {
+        // Handle branches for the past stations
+        if (stations[p0Ndx].branched_from) {
+            p0Ndx = p1Ndx;
+            preP0Ndx = p1Ndx;
+        } else if (stations[preP0Ndx].branched_from) {
+            preP0Ndx = p0Ndx;
+        }
+
+        // Handle branches for the stations ahead
+        if (stations[p1Ndx].branched_from) {
+            nextStationBranch = stations[p2Ndx];
+            nextStation = stations.find((s) => s.name === stations[p1Ndx].branched_from);
+
+            const branchingStationNdx = stations.findIndex((s) => s.name === stations[p1Ndx].branched_from);
+
+            p2Ndx = branchingStationNdx;
+
+            // This is the actual correct solution but for now maps branches are drawn separetely
+            // So this solution looks wrong on map now
+            //p2Ndx = branchingStationNdx >= 0 ? branchingStationNdx : p1Ndx;
+
+            // Redecide post index
+            postP2Ndx = p2Ndx - 1 >= 0 ? p2Ndx - 1 : 0;
+        }
+
+        if (stations[p2Ndx].branched_from) {
+            const branchingStationNdx = stations.findIndex((s) => s.name === stations[p2Ndx].branched_from);
+            postP2Ndx = branchingStationNdx >= 0 ? branchingStationNdx : p2Ndx;
+        }
+    } else {
+        // Handle branches for the past stations
+        if (stations[p1Ndx].branched_from) {
+            const branchingStationNdx = stations.findIndex((s) => s.name === stations[p1Ndx].branched_from);
+
+            p0Ndx = branchingStationNdx;
+            preP0Ndx = branchingStationNdx;
+
+            /* This is the actual correct solution but for now maps branches are drawn separetely
+            // So this solution looks wrong on map now
+            p0Ndx = branchingStationNdx >= 0 ? branchingStationNdx : p1Ndx;
+
+            // Redecide pre index
+            preP0Ndx = p0Ndx - 1 >= 0 ? p0Ndx - 1 : 0;*/
+        }
+
+        if (stations[p0Ndx].branched_from) {
+            const branchingStationNdx = stations.findIndex((s) => s.name === stations[p0Ndx].branched_from);
+            preP0Ndx = branchingStationNdx >= 0 ? branchingStationNdx : p0Ndx;
+        }
+
+        // Handle branches for the stations ahead
+        if (stations[p2Ndx].branched_from) {
+            nextStation = stations[p2Ndx];
+            nextStationBranch = stations.find((s) => s.name === stations[p2Ndx].branched_from);
+            nextStationProximity = 0.5;
+
+            p2Ndx = p1Ndx;
+            postP2Ndx = p1Ndx;
+        } else if (stations[postP2Ndx].branched_from) {
+            postP2Ndx = p2Ndx;
+        }
+    }
+
     const loc = (s) => [s.lon, s.lat];
 
-    const p0 = loc(getCurrentLineInfo().stations[p0Ndx]);
-    const p1 = loc(getCurrentLineInfo().stations[p1Ndx]);
-    const p2 = loc(getCurrentLineInfo().stations[p2Ndx]);
-    const preP0 = loc(getCurrentLineInfo().stations[preP0Ndx]);
-    const postP2 = loc(getCurrentLineInfo().stations[postP2Ndx]);
+    const p0 = loc(stations[p0Ndx]);
+    const p1 = loc(stations[p1Ndx]);
+    const p2 = loc(stations[p2Ndx]);
+    const preP0 = loc(stations[preP0Ndx]);
+    const postP2 = loc(stations[postP2Ndx]);
 
     const easeIn = (t) => t * t * t;
     const easeOut = (t) => 1 - (1 - t) * (1 - t) * (1 - t);
 
-    const steps = 15;
+    const steps = 12;
 
     for (let i = -steps; i <= steps; i++) {
-        await delay(20);
+        await delay(16);
         if (i < 0) {
-            const t = easeIn(1 + (i / steps)) / 2 + 0.5;
-            const pos2 = getSmoothedPosition(p0, p1, t - 0.01, preP0, p2);
-            const pos = getSmoothedPosition(p0, p1, t, preP0, p2);
-            const a = -Math.atan2(pos[1] - pos2[1], pos[0] - pos2[0]);
+            if (p1Ndx === p0Ndx && p0Ndx === preP0Ndx) {
+                // Skip interpolation for the first nodes
+            } else {
+                const t = easeIn(1 + (i / steps)) / 2 + 0.5;
+                const pos2 = getSmoothedPosition(p0, p1, t - 0.01, preP0, p2);
+                const pos = getSmoothedPosition(p0, p1, t, preP0, p2);
+                const a = -Math.atan2(pos[1] - pos2[1], pos[0] - pos2[0]);
 
-            cursorElement.style.setProperty("--angle", `${a}rad`);
-            cursorMarker.setLngLat(pos);
+                cursorElement.style.setProperty("--angle", `${a}rad`);
+                cursorMarker.setLngLat(pos);
+            }
         } else {
-            const t = easeOut(i / steps) / 2;
-            const pos2 = getSmoothedPosition(p1, p2, t + 0.01, p0, postP2);
-            const pos = getSmoothedPosition(p1, p2, t, p0, postP2);
-            const a = -Math.atan2(pos2[1] - pos[1], pos2[0] - pos[0]);
-
-            cursorElement.style.setProperty("--angle", `${a}rad`);
-            cursorMarker.setLngLat(pos);
+            if (p1Ndx === p2Ndx && p2Ndx === postP2Ndx) {
+                // If next target is the last station (so it control points are overlapped)
+                // Just hide it
+                putAwayCursor();
+                break;
+            } else {
+                const t = easeOut(i / steps) / 2;
+                const pos2 = getSmoothedPosition(p1, p2, t + 0.01, p0, postP2);
+                const pos = getSmoothedPosition(p1, p2, t, p0, postP2);
+                putCursorBetweenLocations(pos, pos2);
+            }
         }
+    }
+
+    if (nextStation) {
+        await delay(100);
+
+        // If we have a specific next station to be placed, be placed there
+        const pos2 = getSmoothedPosition(loc(nextStationBranch), loc(nextStation), nextStationProximity * 0.9 + 0.1);
+        const pos = getSmoothedPosition(loc(nextStationBranch), loc(nextStation), nextStationProximity);
+        putCursorBetweenLocations(pos, pos2);
     }
 }
