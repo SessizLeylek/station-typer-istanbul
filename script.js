@@ -215,6 +215,21 @@ document.getElementById("start-button").addEventListener("click", () => {
                     linesQueue.push({ name: key, reverse: (isOrderRandom ? (Math.random() < 0.5) : false) });
             });
             break;
+        case "custom":
+            if (readStationNames.length == 0) {
+                alert(localize("nostations"));
+
+                showBlur();
+                showStartMenu();
+                hideGameMenu();
+                return;
+            }
+
+            readStationNames.forEach((stationName) => {
+                linesQueue.push({ name: stationName, reverse: (isOrderRandom ? (Math.random() < 0.5) : false) });
+            });
+
+            break;
     }
 
     if (isOrderRandom) {
@@ -266,6 +281,41 @@ const optionPool = document.getElementById("option-pool");
 document.body.style.setProperty("--chosen-pool", "single-line");
 optionPool.addEventListener("change", (event) => {
     document.body.style.setProperty("--chosen-pool", event.target.value);
+});
+
+// Custom options
+const fileInput = document.getElementById("opt-custom-file");
+const readStationNames = [];
+
+fileInput.addEventListener("change", (event) => {
+    const resultLabel = document.getElementById("opt-custom-result");
+    const fileList = event.target.files;
+
+    if (fileList < 0) {
+        alert(localize("nofile"));
+        return;
+    }
+
+    readStationNames.length = 0;
+    resultLabel.textContent = localize("uploadfile");
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        const fileContent = e.target.result;
+
+        console.log(fileContent);
+
+        fileContent.split(",").forEach((w) => {
+            const word = w.trim();
+            if (word in LINES) readStationNames.push(word);
+
+            console.log(word);
+        });
+
+        resultLabel.textContent = localize("fileresult").format(readStationNames.length);
+    };
+
+    reader.readAsText(fileList[0]);
 });
 
 // Option toggles
@@ -1345,6 +1395,10 @@ const DICT = {
     "random": ["Randomize Order", "Sırayı Karıştır"],
     "nohint": ["Hide Name Hints", "İsim İpuçlarını Gizle"],
     "initialhint": ["Only Show Initial Letter", "Sadece İlk Harfi Göster"],
+    "nofile": ["No Csv File is Uploaded!", "Hiçbir Csv Dosyası Yüklenmedi!"],
+    "uploadfile": ["Please upload a file.", "Lütfen bir dosya yükleyin."],
+    "fileresult": ["Found {0} Station Names", "{0} İstasyon İsmi Bulundu"],
+    "nostations": ["No uploaded station name found!", "Yüklenmiş istasyon isimleri bulunmuyor!"],
 }
 
 function localize(key) {
@@ -1353,6 +1407,11 @@ function localize(key) {
 
 const menuLocalizations = [
     [document.querySelector("#start-button"), "START!", "BAŞLAT!"],
+    [document.querySelector("#game-menu > div:nth-child(1) > div:nth-child(1) > p.subinfo"), "WPM", "DBK"],
+    [document.querySelector("#game-menu > div:nth-child(1) > div:nth-child(2) > p.subinfo"), "Timer", "Zamanlayıcı"],
+    [document.querySelector("#game-menu > div:nth-child(3) > div:nth-child(1) > p.subinfo"), "Accuracy", "Doğruluk"],
+    [document.querySelector("#game-menu > div:nth-child(3) > div:nth-child(2) > p.subinfo"), "Progress", "İlerleme"],
+    [document.querySelector("#back-button"), "RETURN BACK!", "GERİ DÖN!"],
     [document.querySelector("#option-pool > label:nth-child(2)"), "Single Line", "Tek Hat"],
     [document.querySelector("#option-pool > label:nth-child(4)"), "Single Side", "Tek Yaka"],
     [document.querySelector("#option-pool > label:nth-child(6)"), "All Stations", "Tüm İstasyonlar"],
@@ -1367,11 +1426,10 @@ const menuLocalizations = [
     [document.querySelector("#option-commuter > label:nth-child(5)"), "Disabled", "Devre Dışı"],
     [document.querySelector("#option-regional > label:nth-child(5)"), "Disabled", "Devre Dışı"],
     [document.querySelector("#option-metrobus > label:nth-child(5)"), "Disabled", "Devre Dışı"],
-    [document.querySelector("#game-menu > div:nth-child(1) > div:nth-child(1) > p.subinfo"), "WPM", "DBK"],
-    [document.querySelector("#game-menu > div:nth-child(1) > div:nth-child(2) > p.subinfo"), "Timer", "Zamanlayıcı"],
-    [document.querySelector("#game-menu > div:nth-child(3) > div:nth-child(1) > p.subinfo"), "Accuracy", "Doğruluk"],
-    [document.querySelector("#game-menu > div:nth-child(3) > div:nth-child(2) > p.subinfo"), "Progress", "İlerleme"],
-    [document.querySelector("#back-button"), "RETURN BACK!", "GERİ DÖN!"],
+    [document.querySelector("#option-pool > label:nth-child(8)"), "Custom", "Özel"],
+    [document.querySelector("#option-custom > label"),
+        "Upload your custom line pool as csv file.\nLine names should be identical to the options at \"Single Line\" tab.",
+        "Kendi özel hat havuzunu bir csv dosyasyı olarak yükle.\nHat adları \"Tek Hat\" sekmesindeki seçeneklerle birebir aynı olmalı."],
 ];
 
 function localizeMenus() {
@@ -1381,3 +1439,5 @@ function localizeMenus() {
         el.textContent = localization;
     }
 }
+
+document.addEventListener("DOMContentLoaded", localizeMenus);

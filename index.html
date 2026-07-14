@@ -31,6 +31,9 @@
 
                     <input type="radio" id="opt-pool-all-stations" value="all-stations" name="pool-options">
                     <label for="opt-pool-all-stations">All Stations</label>
+
+                    <input type="radio" id="opt-pool-custom" value="custom" name="pool-options">
+                    <label for="opt-pool-custom">Custom</label>
                 </div>
 
                 <!-- SINGLE LINE OPTIONS (GENERATED FROM DATA) -->
@@ -92,6 +95,13 @@
 
                     <input type="radio" id="opt-metrobus-no" value="disabled" name="metrobus-options" checked>
                     <label for="opt-metrobus-no">Disabled</label>
+                </div>
+
+                <!-- CUSTOM POOL OPTIONS -->
+                <div id="option-custom" class="radio-options ofcc" style="flex-direction: column;">
+                    <label style="pointer-events: none">Text</label>
+                    <input type="file" id="opt-custom-file" accept=".csv">
+                    <label style="pointer-events: none" id="opt-custom-result"></label> 
                 </div>
 
                 <!-- OPTIONS -->

@@ -92,6 +92,35 @@ body,
     background-color: #55c;
 }
 
+.radio-options input[type="file"] {
+    padding: 0.5vw 1vw;
+    border-radius: 0.6vw;
+    cursor: pointer;
+
+    background-color: #66d;
+    color: #fff;
+    font-weight: bold;
+
+    transition: all 0.2s ease;
+}
+
+.radio-options input[type="file"]:hover {
+    background-color: #55c;
+}
+
+input[type="file"]::file-selector-button {
+    display: none;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    display: none;
+}
+
+#option-custom label {
+    white-space: pre-line;
+    text-align: center;
+}
+
 .ofsl {
     display: none !important;
 }
@@ -101,6 +130,10 @@ body,
 }
 
 .ofas {
+    display: none !important;
+}
+
+.ofcc {
     display: none !important;
 }
 
@@ -118,6 +151,12 @@ body,
 
 @container style(--chosen-pool: all-stations) {
     .ofas {
+        display: inherit !important;
+    }
+}
+
+@container style(--chosen-pool: custom) {
+    .ofcc {
         display: inherit !important;
     }
 }
@@ -264,11 +303,11 @@ body,
     transition: filter 0.2s ease, transform 0.1s ease;
 }
 
-#lang-button:hover img{
+#lang-button:hover img {
     filter: brightness(0.8);
 }
 
-#lang-button:active img{
+#lang-button:active img {
     transform: rotate(360deg);
 }
 
