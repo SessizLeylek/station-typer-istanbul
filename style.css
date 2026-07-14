@@ -279,7 +279,7 @@ body,
 }
 
 #vfx-cursor svg {
-    transform: rotate(var(--angle));
+    transform: rotate(var(--angle)) scale(var(--scale));
 }
 
 @keyframes pulse-out {

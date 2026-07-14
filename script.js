@@ -56,6 +56,18 @@ const cursorMarker = new maplibregl.Marker({
     .setLngLat([0, 0])
     .addTo(map);
 
+let cursorScaleMultiplier = 1;
+cursorElement.style.setProperty("--scale", 0);
+map.on("zoom", () => {
+    const zoom = map.getZoom();
+
+    const baseZoom = 15;
+    const scale = Math.pow(2, zoom - baseZoom);
+    const modifiedScale = (scale * cursorScaleMultiplier - 1) * 0.75 + 1;
+
+    cursorElement.style.setProperty("--scale", modifiedScale);
+});
+
 // Wait until the map engine fetches the base stylesheet
 map.on('style.load', () => {
     const layers = map.getStyle().layers;
@@ -362,7 +374,8 @@ async function tryContinueWithNextLine() {
         return false;
     }
 
-    gameState.maxStationCount = LINES[gameState.linesQueue[gameState.currentLineNdx].name].stations.length;
+    const lineId = gameState.linesQueue[gameState.currentLineNdx].name;
+    gameState.maxStationCount = LINES[lineId].stations.length;
 
     gameState.isLineReversed = gameState.linesQueue[gameState.currentLineNdx].reverse;
     if (gameState.isLineReversed) {
@@ -371,8 +384,10 @@ async function tryContinueWithNextLine() {
         gameState.currentStationNdx = 0;
     }
 
+    cursorScaleMultiplier = calculateAverageLineDistance(lineId);
     putCursorOnStation();
-    buildMetroScheme(gameState.linesQueue[gameState.currentLineNdx].name);
+
+    buildMetroScheme(lineId);
 
     return true;
 }
@@ -402,7 +417,7 @@ async function tryContinueWithNextStation() {
 async function tryFindNextStation() {
     while (true) {
         markNodeOnMap(getCurrentLineInfo().name, gameState.isLineReversed);
-        moveCursorAlongLine();
+        progressCursorAlongLine();
 
         const gameContinues = await tryContinueWithNextStation();
         if (!gameContinues) {
@@ -428,6 +443,20 @@ function getDistance(p0, p1) {
     const nm0 = 84.013 * (p0[0] - p1[0]);
     const nm1 = 111.13 * (p0[1] - p1[1]);
     return Math.sqrt(nm0 * nm0 + nm1 * nm1);
+}
+
+function calculateAverageLineDistance(lineId) {
+    const stations = LINES[lineId].stations;
+    const connectionCount = stations.length - 1;
+
+    let totalDistance = 0;
+    for (let i = 1; i <= connectionCount; i++) {
+        const thisStation = stations[i];
+        const prevStation = thisStation.branched_from ? stations.find((s) => s.name === thisStation.branched_from) : stations[i - 1];
+        totalDistance += getDistance([thisStation.lon, thisStation.lat], [prevStation.lon, prevStation.lat]);
+    }
+
+    return totalDistance / connectionCount;
 }
 
 // fly towards the current station
@@ -1032,7 +1061,7 @@ function putCursorBetweenLocations(location, nextLocation) {
     cursorMarker.setLngLat(location);
 }
 
-async function moveCursorAlongLine() {
+async function progressCursorAlongLine() {
     const stations = getCurrentLineInfo().stations;
 
     // Decide on the indices of the bezier points
@@ -1041,15 +1070,26 @@ async function moveCursorAlongLine() {
         p1Ndx = gameState.currentStationNdx;
         p0Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : gameState.maxStationCount - 1;
         preP0Ndx = p0Ndx + 1 < gameState.maxStationCount ? p0Ndx + 1 : gameState.maxStationCount - 1;
-        p2Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : 0;
-        postP2Ndx = p2Ndx - 1 >= 0 ? p2Ndx - 1 : 0;
+
+        if (getCurrentLineInfo().circular) {
+            p2Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : gameState.maxStationCount - 1;
+            postP2Ndx = p2Ndx - 1 >= 0 ? p2Ndx - 1 : gameState.maxStationCount - 1;
+        } else {
+            p2Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : 0;
+            postP2Ndx = p2Ndx - 1 >= 0 ? p2Ndx - 1 : 0;
+        }
     } else {
         p1Ndx = gameState.currentStationNdx;
         p0Ndx = p1Ndx - 1 >= 0 ? p1Ndx - 1 : 0;
         preP0Ndx = p0Ndx - 1 >= 0 ? p0Ndx - 1 : 0;
-        p2Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : gameState.maxStationCount - 1;
-        postP2Ndx = p2Ndx + 1 < gameState.maxStationCount ? p2Ndx + 1 : gameState.maxStationCount - 1;
-        p1Ndx = gameState.currentStationNdx;
+
+        if (getCurrentLineInfo().circular) {
+            p2Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : 0;
+            postP2Ndx = p2Ndx + 1 < gameState.maxStationCount ? p2Ndx + 1 : 0;
+        } else {
+            p2Ndx = p1Ndx + 1 < gameState.maxStationCount ? p1Ndx + 1 : gameState.maxStationCount - 1;
+            postP2Ndx = p2Ndx + 1 < gameState.maxStationCount ? p2Ndx + 1 : gameState.maxStationCount - 1;
+        }
     }
 
     let nextStation = null;
